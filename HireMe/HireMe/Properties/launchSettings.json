@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "HireMe": {
+      "commandName": "Project",
+      "sqlDebugging": true
+    }
+  }
+}

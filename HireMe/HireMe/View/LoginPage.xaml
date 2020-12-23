@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Iniciar Sesion"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             x:Class="HireMe.View.LoginPage">
+    <ContentPage.Content>
+        <ScrollView
+            BindingContext="{Binding Login}">
+            <StackLayout>
+                <Label 
+                    Text="HireMe"
+                    FontSize="Header"
+                    Padding="20,0,0,10"/>
+
+                <Grid 
+                    Margin="10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        FontSize="15"
+                        Text="Mail"/>
+                    <Entry 
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Keyboard="Email"
+                        Text="{Binding Mail, Mode=TwoWay}"
+                        FontSize="15"
+                        Placeholder="ejemplo@mail.com" />
+                    <Label
+                        Text="Contrasena"
+                        VerticalOptions="Center"
+                        Grid.Row="1"
+                        Grid.Column="0"/>
+                    <Entry 
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        IsPassword="True"
+                        Text="{Binding Password, Mode=TwoWay}"
+                        Placeholder="*******" />
+                </Grid>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label 
+                        VerticalOptions="Center"
+                        Margin="10,0"
+                        Text="Mantener Sesion"/>
+                    <Switch
+                        HorizontalOptions="EndAndExpand"
+                        IsToggled="{Binding IsSesion, Mode=TwoWay}"/>
+                </StackLayout>
+
+                <ActivityIndicator
+                    IsRunning="{Binding IsRuning, Mode=TwoWay}">
+
+                </ActivityIndicator>
+                <Label
+                    Margin="10,0"
+                    Text="Olvido su contrasena?"
+                    TextColor="DarkBlue"/>
+                <StackLayout 
+                    Margin="10,0">
+                    <Button 
+                        HorizontalOptions="FillAndExpand"
+                        Command="{Binding LoginCommand}"
+                        IsEnabled="{Binding IsEnable, Mode=TwoWay}"
+                        Text="Entrar" />
+                    <Button 
+                        HorizontalOptions="FillAndExpand"
+                        Text="Registrarse"
+                        Command="{Binding RegisterCommand, Mode=TwoWay}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Image
+                        Source="iglogo"
+                        WidthRequest="80"
+                        HorizontalOptions="CenterAndExpand"/>
+                    <Image
+                        Source="twitterlogo"
+                        HorizontalOptions="CenterAndExpand"
+                        WidthRequest="80"/>
+
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+        
+    </ContentPage.Content>
+</ContentPage>
