@@ -16,7 +16,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <!--LA DATA ESTA LLEGANDO PERO NO SE VE -->
+                
                 <Label
                     Text="Nombre"
                     TextColor="Black"
@@ -40,6 +40,7 @@
                     <Label
                         Text="{Binding Perfiluser.Apellido_user}"
                         TextColor="Black"
+                        FontSize="Medium"
                         VerticalOptions="Center"/>
                 </StackLayout>
                 <Label

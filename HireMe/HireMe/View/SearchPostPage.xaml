@@ -5,8 +5,7 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              x:Class="HireMe.View.SearchPostPage">
     <ContentPage.Content>
-        <!-- BindingContext="{Binding SearchPostvm}" -->
-        
+
         <StackLayout
             BindingContext="{Binding SearchPostvm}">
             <Label

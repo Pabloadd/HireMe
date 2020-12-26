@@ -12,7 +12,13 @@
                     <StackLayout Orientation="Horizontal">
                         <Button Text="Mecanico" FontSize="Small"/>
                         <Button Text="Electricista" FontSize="Small"/>
-                        <Button Text="Tecnico en ac" FontSize="Small"/>
+                        
+                        <Button 
+                            Command="{Binding SearchsPostsBtn}"
+                            Text="Publicaciones" 
+                            FontSize="Small"
+                            TextColor="Black"
+                            BackgroundColor="Blue"/>
                     </StackLayout>
                 </StackLayout>
                 

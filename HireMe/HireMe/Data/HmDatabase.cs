@@ -33,10 +33,9 @@ namespace HireMe.Data
             else
             {
                 return _database.InsertAsync(user);
-                
             }
         }
-        //Metodo para obtener ID de un usurio registrado
+        //Metodo para obtener ID de un usurio registrado, para registrar en la tabla de worker el usuario registrado con su profesion
         int b = 0;
         public int getUserId(String mail)
         {
@@ -50,11 +49,9 @@ namespace HireMe.Data
         //metodo para obtener los datos de un usurio
         public Task<UsersHm> getUserHm(string mailUser)
         {
-            
             return _database.Table<UsersHm>()
                 .Where(i => i.Mail_user == mailUser)
                 .FirstOrDefaultAsync();
-            
         }
         
         public Task<int> SaveUserWorker(UsersWorkers userWorker)
@@ -68,7 +65,7 @@ namespace HireMe.Data
                 return _database.InsertAsync(userWorker);
             }
         }
-
+        // obtener toda la data de los usuarios registrados
         public Task<List<UsersHm>> GetUsersHM()
         {
             return _database.Table<UsersHm>().ToListAsync();
@@ -111,6 +108,24 @@ namespace HireMe.Data
                 return consultaUser.Count;
             }
             
+        }
+
+        //Metodos de publicaciones
+        public Task<int> SavePostUser(PostUsers post)
+        {
+            if (post.IdPost != 0)
+            {
+                return _database.UpdateAsync(post);
+            }
+            else
+            {
+                return _database.InsertAsync(post);
+            }
+        }
+
+        public Task<List<PostUsers>> GetPosts()
+        {
+            return _database.Table<PostUsers>().ToListAsync();
         }
     }
 }

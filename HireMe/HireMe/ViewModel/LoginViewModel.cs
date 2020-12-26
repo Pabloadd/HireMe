@@ -160,7 +160,7 @@ namespace HireMe.ViewModel
             UsersHm user = App.Database.getUserHm(this.Mail).Result;
             //lineas para pasar a la siguiente interfaz, enlanzando la viewModel con la View
             MainViewModel.GetInstance().Searchvm = new SearchViewModel(user);
-            await Application.Current.MainPage.Navigation.PushAsync(new HiremeTabbedPage());
+            await Application.Current.MainPage.Navigation.PushAsync(new SearchPage());
             
         }
 

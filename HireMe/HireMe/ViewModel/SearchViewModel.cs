@@ -1,21 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace HireMe.ViewModel
 {
+    using GalaSoft.MvvmLight.Command;
     using Models;
+    using System.Collections.Generic;
+    using System.Windows.Input;
+    using Xamarin.Forms;
+    using View;
+
     class SearchViewModel : BaseViewModel
     {
 
         public SearchViewModel(UsersHm user)
         {
+            this.user = user;
             LoadListUsers();
+            
+        }
+
+        public SearchViewModel()
+        {
+
         }
 
         #region Attribitues
+        public UsersHm user;
+        
         private List<SearchItemViewModel> listUsers;
         private bool isRefreshing;
+        #endregion
+
+        #region Commands
+        
         #endregion
 
         #region Properties
@@ -39,6 +55,8 @@ namespace HireMe.ViewModel
             ListUser = App.Database.GetUsersWorkers();
             IsRefreshing = false;
         }
+
+        
         #endregion
     }
 }
