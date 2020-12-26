@@ -21,7 +21,7 @@ namespace HireMe.ViewModel
 
         public SearchViewModel Searchvm { get; set; }
 
-        public PostViewModel Postvm { get; set; }
+        public SearchPostViewModel SearchPostvm { get; set; }
 
         public PerfilUserViewModel Perfiluser { get; set; }
         #endregion

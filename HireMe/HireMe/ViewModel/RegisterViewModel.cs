@@ -39,8 +39,6 @@ namespace HireMe.ViewModel
         private ObservableCollection<Address> address;
         private string findAddress;
         private ApiService apiService;
-        private List<Address> addressList;
-        private List<Candidate> candidateList;
         private Address objAddress;
         #endregion
 

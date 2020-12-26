@@ -14,7 +14,7 @@ namespace HireMe.Models
         public string UserName { get; set; }
         public string PostText { get; set; }
         public string fechaPost { get; set; }
-        public string profesionPost { get; set; }
+        //public string profesionPost { get; set; }
         
         [ForeignKey(typeof(UsersHm))]
         public int IdId_userhm { get; set; }

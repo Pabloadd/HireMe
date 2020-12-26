@@ -5,10 +5,54 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              x:Class="HireMe.View.SearchPostPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <!-- BindingContext="{Binding SearchPostvm}" -->
+        
+        <StackLayout
+            BindingContext="{Binding SearchPostvm}">
+            <Label
+                Margin="20,20,0,0"
+                Text="¿Qué desea publicar?"
+                TextColor="Black"
+                FontSize="Title"
+                VerticalOptions="Start" 
+                HorizontalOptions="StartAndExpand" />
+            <Entry
+                Margin="10"
+                Text="{Binding EntryPostUser}"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"/>
+            <ScrollView>
+                <ListView
+                    ItemsSource="{Binding ListPosts}"
+                    IsRefreshing="{Binding IsRefreshingPosts, Mode=TwoWay}"
+                    HasUnevenRows="True"
+                    IsPullToRefreshEnabled="True"
+                    SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout
+                                    VerticalOptions="Start"
+                                    Margin="20,5,20,5">
+                                    <Label
+                                        Text="{Binding NameUserPost}"
+                                        TextColor="Black"
+                                        FontSize="Header"/>
+                                    <Label
+                                        Text="{Binding DatePost}"
+                                        TextColor="Black"
+                                        FontSize="Medium"/>
+                                    <Label
+                                        Text="{Binding DescriptionPost}"
+                                        TextColor="Black"
+                                        FontSize="Medium"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
         </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>
