@@ -36,16 +36,26 @@ namespace HireMe.Data
                 
             }
         }
+        //Metodo para obtener ID de un usurio registrado
         int b = 0;
-        public int getUserId(String a)
+        public int getUserId(String mail)
         {
 
-            var e = _database.QueryAsync<UsersHm>("Select Id_userhm from UsersHm where Mail_user = ?", a).Result;
+            var e = _database.QueryAsync<UsersHm>("Select Id_userhm from UsersHm where Mail_user = ?", mail).Result;
             b =  e.Select(i => i.Id_userhm).First();
             return  b;
             //return db.Query<Valuation> ("select * from Valuation where StockId = ?", stock.Id);
         }
 
+        //metodo para obtener los datos de un usurio
+        public Task<UsersHm> getUserHm(string mailUser)
+        {
+            
+            return _database.Table<UsersHm>()
+                .Where(i => i.Mail_user == mailUser)
+                .FirstOrDefaultAsync();
+            
+        }
         
         public Task<int> SaveUserWorker(UsersWorkers userWorker)
         {
@@ -65,8 +75,8 @@ namespace HireMe.Data
         }
 
         /*metodo preparado para consultar los usuarios que poseen una profesion, 
-        TODAVIA NO HA SIDO TESTEADO
-        ultimo test funciona el insert de trabajadores*/
+        TODAVIA ya HA SIDO TESTEADO
+        por el momento funciona, pero obviamente pueden ocurrir exepciones que no han sido validadas*/
         
         public List<SearchItemViewModel> GetUsersWorkers()
         {

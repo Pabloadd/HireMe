@@ -168,8 +168,7 @@ namespace HireMe.ViewModel
                     userWhm.Celular = Phone;
                     await App.Database.SaveUser(userWhm);
 
-                    //aqui el id no se si funcinara, problamente debe consultar el id una vez insertado
-                    // el user para luego insertar el worker con el id correspondiente. PRUEBA!
+                    //Este metedod para obtener el ID del usurio que se ha registrado Si funciona.
                     
                     userworker.Id_userhm = App.Database.getUserId(Mail);
                     userworker.profesion = Profession;

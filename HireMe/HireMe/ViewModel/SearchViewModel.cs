@@ -8,7 +8,7 @@ namespace HireMe.ViewModel
     class SearchViewModel : BaseViewModel
     {
 
-        public SearchViewModel()
+        public SearchViewModel(UsersHm user)
         {
             LoadListUsers();
         }

@@ -8,6 +8,7 @@ namespace HireMe.ViewModel
     using System.ComponentModel;
     using System.Windows.Input;
     using View;
+    using Models;
     using Xamarin.Forms;
     /*
      * USUARIOS REGISTRADOS
@@ -155,8 +156,10 @@ namespace HireMe.ViewModel
                     "Mensaje",
                     "Bienvenido",
                     "Aceptar");
+            //linea para obtener los datos del usuario que inicio sesion
+            UsersHm user = App.Database.getUserHm(this.Mail).Result;
             //lineas para pasar a la siguiente interfaz, enlanzando la viewModel con la View
-            MainViewModel.GetInstance().Searchvm = new SearchViewModel();
+            MainViewModel.GetInstance().Searchvm = new SearchViewModel(user);
             await Application.Current.MainPage.Navigation.PushAsync(new HiremeTabbedPage());
             
         }

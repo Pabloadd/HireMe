@@ -1,18 +1,19 @@
 ﻿
-using System.Text;
-
 namespace HireMe.ViewModel
 {
+    using GalaSoft.MvvmLight.Command;
     using Models;
     using System;
     using System.Collections.Generic;
+    using System.Windows.Input;
+
     public class SearchPostViewModel : BaseViewModel
     {
         // EN EL CONSTRUCTOR SE DEBE RECIBIR EL USUARIO QUE INICO SESION
         #region constructor
-        public SearchPostViewModel()
+        public SearchPostViewModel(UsersHm user)
         {
-
+            sessionUser = user;
         }
         #endregion
 
@@ -61,10 +62,26 @@ namespace HireMe.ViewModel
         private string nameUserPost;
         private string datePost;
         private string descriptionPost;
+
+        private UsersHm sessionUser;
+        #endregion
+
+        #region Commands
+        public ICommand SendPostUser 
+        {
+            get
+            {
+                return new RelayCommand(SendPostMethod);
+            } 
+        }
         #endregion
 
         #region Methods
-
+        public void SendPostMethod()
+        {
+            //codigo para enviar los datos del post a la BD
+            this.NameUserPost = sessionUser.Nombre_c +" "+ sessionUser.Apellido_user;
+        }
         #endregion
     }
 }
