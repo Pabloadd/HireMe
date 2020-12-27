@@ -17,7 +17,7 @@
                 HorizontalOptions="StartAndExpand" />
             <Entry
                 Margin="10"
-                Text="{Binding EntryPostUser}"
+                Text="{Binding EntryPostUser, Mode=TwoWay}"
                 VerticalOptions="Center"
                 HorizontalOptions="FillAndExpand"/>
             <Button
@@ -39,15 +39,15 @@
                                     VerticalOptions="Start"
                                     Margin="20,5,20,5">
                                     <Label
-                                        Text="{Binding NameUserPost}"
-                                        TextColor="Black"
-                                        FontSize="Header"/>
-                                    <Label
-                                        Text="{Binding DatePost}"
+                                        Text="{Binding UserName}"
                                         TextColor="Black"
                                         FontSize="Medium"/>
                                     <Label
-                                        Text="{Binding DescriptionPost}"
+                                        Text="{Binding fechaPost}"
+                                        TextColor="Black"
+                                        FontSize="Small"/>
+                                    <Label
+                                        Text="{Binding PostText}"
                                         TextColor="Black"
                                         FontSize="Medium"/>
                                 </StackLayout>

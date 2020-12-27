@@ -151,13 +151,14 @@ namespace HireMe.ViewModel
             }
             IsRuning = false;
             IsEnable = true;
-            this.Mail = string.Empty; this.Password = string.Empty;
+            
             await Application.Current.MainPage.DisplayAlert(
                     "Mensaje",
                     "Bienvenido",
                     "Aceptar");
             //linea para obtener los datos del usuario que inicio sesion
             UsersHm user = App.Database.getUserHm(this.Mail).Result;
+            this.Mail = string.Empty; this.Password = string.Empty;
             //lineas para pasar a la siguiente interfaz, enlanzando la viewModel con la View
             MainViewModel.GetInstance().Searchvm = new SearchViewModel(user);
             await Application.Current.MainPage.Navigation.PushAsync(new SearchPage());

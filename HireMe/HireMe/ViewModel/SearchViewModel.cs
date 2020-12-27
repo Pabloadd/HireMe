@@ -31,11 +31,17 @@ namespace HireMe.ViewModel
         #endregion
 
         #region Commands
-        
-        #endregion
+        public ICommand SearchsPostsBtn
+        {
+            get
+            {
+                return new RelayCommand(SearchsPostsMethod);
+            }
+        }
+    #endregion
 
-        #region Properties
-        public List<SearchItemViewModel> ListUser
+    #region Properties
+    public List<SearchItemViewModel> ListUser
         {
             get { return listUsers;  } 
             set { SetValue(ref listUsers, value);  }
@@ -55,8 +61,13 @@ namespace HireMe.ViewModel
             ListUser = App.Database.GetUsersWorkers();
             IsRefreshing = false;
         }
-
-        
-        #endregion
+    public async void SearchsPostsMethod()
+    {
+        SearchViewModel Svm = new SearchViewModel();
+        MainViewModel.GetInstance().SearchPostvm = new SearchPostViewModel(this.user);
+        await Application.Current.MainPage.Navigation.PushAsync(new SearchPostPage());
     }
+
+    #endregion
+}
 }

@@ -19,7 +19,7 @@ namespace HireMe.ViewModel
         }
 
         #region attributes
-        UsersHm userHm;
+        
         #endregion
 
         #region Property
@@ -31,10 +31,7 @@ namespace HireMe.ViewModel
             }
         }
 
-        public ICommand SearchsPostsBtn()
-        {
-            return new RelayCommand(SearchsPostsMethod);
-        }
+        
 
         #endregion
 
@@ -45,13 +42,7 @@ namespace HireMe.ViewModel
             await Application.Current.MainPage.Navigation.PushAsync( new PerfilUserPage());
         }
 
-        public async void SearchsPostsMethod()
-        {
-            SearchViewModel Svm = new SearchViewModel();
-            userHm = Svm.user;
-            MainViewModel.GetInstance().SearchPostvm = new SearchPostViewModel(this.userHm);
-            await Application.Current.MainPage.Navigation.PushAsync(new SearchPostPage());
-        }
+        
         #endregion
 
     }

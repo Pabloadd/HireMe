@@ -38,23 +38,7 @@ namespace HireMe.ViewModel
             set { SetValue(ref isRefreshingPosts, value); }
         }
 
-        public string NameUserPost
-        {
-            get { return nameUserPost; }
-            set { SetValue(ref nameUserPost, value); }
-        }
-
-        public string DatePost
-        {
-            get { return datePost; }
-            set { SetValue(ref datePost, value); }
-        }
-
-        public string DescriptionPost 
-        {
-            get { return descriptionPost; } 
-            set { SetValue(ref descriptionPost, value); } 
-        }
+        
         #endregion
 
         #region Attributies
@@ -82,7 +66,7 @@ namespace HireMe.ViewModel
         public async void SendPostMethod()
         {
             //codigo para enviar los datos del post a la BD
-            if (string.IsNullOrEmpty(this.DescriptionPost))
+            if (string.IsNullOrEmpty(this.EntryPostUser))
             {
                 await Application.Current.MainPage.DisplayAlert(
                         "Error",
@@ -91,9 +75,9 @@ namespace HireMe.ViewModel
                 return;
             }
             PostUsers post = new PostUsers();
-            this.NameUserPost = sessionUser.Nombre_c +" "+ sessionUser.Apellido_user;
-            post.UserName = this.NameUserPost;
-            post.PostText = this.DescriptionPost;
+            var usernamepost = sessionUser.Nombre_c +" "+ sessionUser.Apellido_user;
+            post.UserName = usernamepost;
+            post.PostText = this.EntryPostUser;
             post.fechaPost = DateTime.UtcNow.ToString();
             post.IdId_userhm = sessionUser.Id_userhm;
             try
@@ -101,6 +85,7 @@ namespace HireMe.ViewModel
                 var result = await App.Database.SavePostUser(post);
                 if (result > 0)
                 {
+                    this.EntryPostUser = string.Empty;
                     await Application.Current.MainPage.DisplayAlert(
                         "Notificacion",
                         "Su publicacion ha sido enviada.",

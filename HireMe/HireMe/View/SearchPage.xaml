@@ -12,14 +12,15 @@
                     <StackLayout Orientation="Horizontal">
                         <Button Text="Mecanico" FontSize="Small"/>
                         <Button Text="Electricista" FontSize="Small"/>
-                        
-                        <Button 
-                            Command="{Binding SearchsPostsBtn}"
-                            Text="Publicaciones" 
-                            FontSize="Small"
-                            TextColor="Black"
-                            BackgroundColor="Blue"/>
                     </StackLayout>
+                    <Button 
+                        Command="{Binding SearchsPostsBtn}"
+                        Text="Publicaciones" 
+                        FontSize="Small"
+                        TextColor="Black"
+                        BackgroundColor="AliceBlue"
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
                 
                 <ListView
