@@ -133,11 +133,9 @@ namespace HireMe.ViewModel
                 IsEnable = true;
                 return;
             }
-            /*if(this.Mail != "pablo@gmail.com" || this.Password != "123")
-            {
-                
-            }*/
+            
             var validUser = App.Database.ConsultaLogin(this.Mail, this.Password);
+
             if (validUser <= 0 )
             {
                 await Application.Current.MainPage.DisplayAlert(

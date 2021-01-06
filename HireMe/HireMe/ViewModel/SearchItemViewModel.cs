@@ -30,9 +30,6 @@ namespace HireMe.ViewModel
                 return new RelayCommand(SelectUser);
             }
         }
-
-        
-
         #endregion
 
         #region Methods
@@ -41,8 +38,6 @@ namespace HireMe.ViewModel
             MainViewModel.GetInstance().Perfiluser = new PerfilUserViewModel(this);
             await Application.Current.MainPage.Navigation.PushAsync( new PerfilUserPage());
         }
-
-        
         #endregion
 
     }

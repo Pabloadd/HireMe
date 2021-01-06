@@ -135,6 +135,7 @@
                     <Button
                         Grid.Row="8"
                         Grid.ColumnSpan="2"
+                        IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                         Command="{Binding SendCommand}"
                         Text="Enviar"/>
                 </Grid>

@@ -35,7 +35,11 @@ namespace HireMe.ViewModel
         public bool IsRefreshingPosts
         {
             get { return isRefreshingPosts; }
-            set { SetValue(ref isRefreshingPosts, value); }
+            set 
+            { 
+                SetValue(ref isRefreshingPosts, value);
+                LoadListPosts();
+            }
         }
 
         

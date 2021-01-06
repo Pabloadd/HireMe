@@ -15,7 +15,7 @@ namespace HireMe.ViewModel
         {
             this.user = user;
             LoadListUsers();
-            
+
         }
 
         public SearchViewModel()
@@ -25,7 +25,7 @@ namespace HireMe.ViewModel
 
         #region Attribitues
         public UsersHm user;
-        
+
         private List<SearchItemViewModel> listUsers;
         private bool isRefreshing;
         #endregion
@@ -38,19 +38,23 @@ namespace HireMe.ViewModel
                 return new RelayCommand(SearchsPostsMethod);
             }
         }
-    #endregion
+        #endregion
 
-    #region Properties
-    public List<SearchItemViewModel> ListUser
+        #region Properties
+        public List<SearchItemViewModel> ListUser
         {
-            get { return listUsers;  } 
-            set { SetValue(ref listUsers, value);  }
+            get { return listUsers; }
+            set { SetValue(ref listUsers, value); }
         }
 
-        public bool IsRefreshing 
-        { 
-            get { return isRefreshing; } 
-            set { SetValue(ref isRefreshing, value); } 
+        public bool IsRefreshing
+        {
+            get { return isRefreshing; }
+            set 
+            { 
+                SetValue(ref isRefreshing, value);
+                LoadListUsers();
+            }
         }
         #endregion
 
@@ -61,13 +65,13 @@ namespace HireMe.ViewModel
             ListUser = App.Database.GetUsersWorkers();
             IsRefreshing = false;
         }
-    public async void SearchsPostsMethod()
-    {
-        SearchViewModel Svm = new SearchViewModel();
-        MainViewModel.GetInstance().SearchPostvm = new SearchPostViewModel(this.user);
-        await Application.Current.MainPage.Navigation.PushAsync(new SearchPostPage());
-    }
+        public async void SearchsPostsMethod()
+        {
+            SearchViewModel Svm = new SearchViewModel();
+            MainViewModel.GetInstance().SearchPostvm = new SearchPostViewModel(this.user);
+            await Application.Current.MainPage.Navigation.PushAsync(new SearchPostPage());
+        }
 
-    #endregion
-}
+        #endregion
+    }
 }

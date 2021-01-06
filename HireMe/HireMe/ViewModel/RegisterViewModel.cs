@@ -7,7 +7,7 @@ namespace HireMe.ViewModel
     using Xamarin.Forms;
     using GalaSoft.MvvmLight.Command;
     using Models;
-    using System.Collections.ObjectModel;
+    using System.Linq;
     using Services;
     using System.Collections.Generic;
 
@@ -19,7 +19,7 @@ namespace HireMe.ViewModel
         public RegisterViewModel()
         {
             this.apiService = new ApiService();
-            
+            IsEnabled = true;
         }
         #endregion
 
@@ -34,22 +34,18 @@ namespace HireMe.ViewModel
         private int phone;
         private string profession;
         private bool isRuning;
-        
+        private bool isEnabled;
 
-        private ObservableCollection<Address> address;
+
+
+        private List<Address> address;
         private string findAddress;
         private ApiService apiService;
         private Address objAddress;
+        private Candidate candidate;
         #endregion
 
         #region Properties
-
-        //Existe la posibilidad de cambiar el ObservableCollection por List<>
-        public ObservableCollection<Address> Address
-        {
-            get { return address; }
-            set { SetValue(ref address, value); }
-        }
 
         public string FindAddress 
         {
@@ -114,14 +110,37 @@ namespace HireMe.ViewModel
             get { return isRuning; } 
             set { SetValue(ref isRuning, value); } 
         }
+
+        public bool IsEnabled 
+        {
+            get { return isEnabled; } 
+            set { SetValue(ref isEnabled, value); } 
+        }
         #endregion
 
         #region Methods
-
-
         public async void Send()
         {
+            IsEnabled = false;
             IsRuning = true;
+            //ValidarFormulario es un metodo creado para validar los campos de tipo string del formulario
+            ValidarFormulario(this.ProfileUser);
+            ValidarFormulario(this.Name);
+            ValidarFormulario(this.LastName);
+            ValidarFormulario(this.Mail);
+            ValidarFormulario(this.Password);
+            ValidarFormulario(this.Profession);
+            ValidarFormulario(this.Location);
+            if (this.Phone <= 0)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "Falta ingresar su numero de celular",
+                    "Aceptar");
+                IsRuning = false;
+                IsEnabled = true;
+                return;
+            }
             if (ProfileUser.Equals("Cliente"))
             {
                 try
@@ -193,6 +212,7 @@ namespace HireMe.ViewModel
                 }
             }
             IsRuning = false;
+            IsEnabled = true;
         }
 
         public async void Search()
@@ -212,30 +232,51 @@ namespace HireMe.ViewModel
                 if (!response.IsSuccess)
                 {
                     await Application.Current.MainPage.DisplayAlert(
-                    "Mensaje!",
-                    response.Message,
-                    "Aceptar");
+                        "Mensaje",
+                        response.Message,
+                        "Aceptar");
                     IsRuning = false;
                     return;
                 }
-                
-                objAddress = (Address)response.Result;
-                this.Location = objAddress.Candidates[0].Name;
+                // se establece un try cath aqui porque aveces suele salir un error en la
+                // que forza el cierre de la app
+                try
+                {
+                    objAddress = (Address)response.Result;
+                    this.Location = objAddress.Candidates[0].Name;
+                }
+                catch (System.Exception e)
+                {
+                    await Application.Current.MainPage.DisplayAlert(
+                        "Mensaje",
+                        e.Message,
+                        "Aceptar");
+                    IsRuning = false;
+                    return;
+                }
+             
                 IsRuning = false;
                 //this.Address = new List<Address>(this.addressList);
                 
             }
             
         }
+
+        public async void ValidarFormulario(string values)
+        {
+            if (string.IsNullOrEmpty(values))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "Falta algunos datos, revise por favor",
+                    "Aceptar");
+                IsRuning = false;
+                IsEnabled = true;
+                return;
+            }
+        }
         #endregion
-        /* https://maps.googleapis.com
-               /maps
-               /api/place/findplacefromtext/json
-               ?
-               input=_
-               &inputtype=textquery
-               &fields=formatted_address,name
-               &key=AIzaSyAEXb4E0LnAFJdjuegTVp3DMvrQU2ecy-E*/
+        
         #region Command
 
         public ICommand SendCommand
@@ -253,7 +294,6 @@ namespace HireMe.ViewModel
                 return new RelayCommand(Search);
             }
         }
-
         #endregion
     }
 
