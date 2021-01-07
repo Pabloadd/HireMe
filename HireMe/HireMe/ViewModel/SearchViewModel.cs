@@ -53,7 +53,6 @@ namespace HireMe.ViewModel
             set 
             { 
                 SetValue(ref isRefreshing, value);
-                LoadListUsers();
             }
         }
         #endregion

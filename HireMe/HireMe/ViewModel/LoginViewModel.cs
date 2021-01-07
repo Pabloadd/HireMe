@@ -173,6 +173,8 @@ namespace HireMe.ViewModel
         {
             App.Database.BorrarDataDB();
         }
+
+       
         #endregion
     }
 }

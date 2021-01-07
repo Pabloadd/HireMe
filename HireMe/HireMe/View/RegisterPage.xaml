@@ -125,11 +125,13 @@
                         TextColor="Black"
                         Grid.Row="7"
                         Grid.Column="0"
+                        IsVisible="{Binding IsVisibleProf, Mode=TwoWay}"
                         VerticalOptions="Center" FontSize="Small"/>
                     <Entry
                         Grid.Row="7"
                         Grid.Column="1"
                         Keyboard="Text"
+                        IsVisible="{Binding IsVisibleProf, Mode=TwoWay}"
                         Placeholder="Electrico, Tecnico en aires..."
                         Text="{Binding Profession, Mode=TwoWay}" FontSize="Medium"/>
                     <Button

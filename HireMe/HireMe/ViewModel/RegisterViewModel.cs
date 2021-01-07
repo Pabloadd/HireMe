@@ -1,25 +1,23 @@
 ﻿
-
-
 namespace HireMe.ViewModel
 {
     using System.Windows.Input;
     using Xamarin.Forms;
     using GalaSoft.MvvmLight.Command;
     using Models;
-    using System.Linq;
     using Services;
-    using System.Collections.Generic;
+    using System;
 
     public class RegisterViewModel : BaseViewModel
     {
-        
-        
+
+
         #region Constructor
         public RegisterViewModel()
         {
             this.apiService = new ApiService();
             IsEnabled = true;
+            IsVisibleProf = false;
         }
         #endregion
 
@@ -35,33 +33,35 @@ namespace HireMe.ViewModel
         private string profession;
         private bool isRuning;
         private bool isEnabled;
+        private bool isVisibleProf;
 
-
-
-        private List<Address> address;
         private string findAddress;
         private ApiService apiService;
         private Address objAddress;
-        private Candidate candidate;
+        private int flagMessageValidation = 0;
         #endregion
 
         #region Properties
 
-        public string FindAddress 
+        public string FindAddress
         {
-            get { return findAddress; } 
-            set 
-            { 
+            get { return findAddress; }
+            set
+            {
                 SetValue(ref findAddress, value);
                 // este metodo refresca el campo, pero suele reventar
                 //this.Search();
-            } 
+            }
         }
 
         public string ProfileUser
         {
-            get { return profileuser; } 
-            set { SetValue(ref profileuser, value); }
+            get { return profileuser; }
+            set
+            {
+                SetValue(ref profileuser, value);
+                CheckUserProfile();
+            }
         }
         public string Name
         {
@@ -69,52 +69,58 @@ namespace HireMe.ViewModel
             set { SetValue(ref name, value); }
         }
 
-        public string LastName 
+        public string LastName
         {
             get { return lastName; }
             set { SetValue(ref lastName, value); }
         }
 
-        public string Mail 
+        public string Mail
         {
-            get { return mail;  }
-            set { SetValue(ref mail, value);  } 
+            get { return mail; }
+            set { SetValue(ref mail, value); }
         }
 
-        public string Password 
+        public string Password
         {
             get { return password; }
             set { SetValue(ref password, value); }
         }
 
-        public int Phone 
+        public int Phone
         {
             get { return phone; }
             set { SetValue(ref phone, value); }
         }
 
-        public string Location 
+        public string Location
         {
             get { return location; }
             set { SetValue(ref location, value); }
         }
 
-        public string Profession 
+        public string Profession
         {
             get { return profession; }
             set { SetValue(ref profession, value); }
         }
 
-        public bool IsRuning 
+        public bool IsRuning
         {
-            get { return isRuning; } 
-            set { SetValue(ref isRuning, value); } 
+            get { return isRuning; }
+            set { SetValue(ref isRuning, value); }
         }
 
-        public bool IsEnabled 
+        public bool IsEnabled
         {
-            get { return isEnabled; } 
-            set { SetValue(ref isEnabled, value); } 
+            get { return isEnabled; }
+            set { SetValue(ref isEnabled, value); }
+        }
+
+        public bool IsVisibleProf
+        {
+            get { return isVisibleProf; }
+            set { SetValue(ref isVisibleProf, value); }
         }
         #endregion
 
@@ -123,14 +129,19 @@ namespace HireMe.ViewModel
         {
             IsEnabled = false;
             IsRuning = true;
-            //ValidarFormulario es un metodo creado para validar los campos de tipo string del formulario
-            ValidarFormulario(this.ProfileUser);
-            ValidarFormulario(this.Name);
-            ValidarFormulario(this.LastName);
-            ValidarFormulario(this.Mail);
-            ValidarFormulario(this.Password);
-            ValidarFormulario(this.Profession);
-            ValidarFormulario(this.Location);
+            //this region are some lines to validate the form 
+            #region ValidationsLines
+            if (string.IsNullOrEmpty(this.ProfileUser) || string.IsNullOrEmpty(this.Name) || string.IsNullOrEmpty(this.LastName) ||
+                string.IsNullOrEmpty(this.Mail) || string.IsNullOrEmpty(this.Password) || string.IsNullOrEmpty(this.Location))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "Falta algunos datos, revise por favor",
+                    "Aceptar");
+                IsRuning = false;
+                IsEnabled = true;
+                return;
+            }
             if (this.Phone <= 0)
             {
                 await Application.Current.MainPage.DisplayAlert(
@@ -141,6 +152,21 @@ namespace HireMe.ViewModel
                 IsEnabled = true;
                 return;
             }
+            if (this.ProfileUser.Equals("Trabajador"))
+            {
+                if (string.IsNullOrEmpty(this.Profession))
+                {
+                    await Application.Current.MainPage.DisplayAlert(
+                        "Error",
+                        "Debe establecer sus profesiones",
+                        "Aceptar");
+                    IsRuning = false;
+                    IsEnabled = true;
+                    return;
+                }
+            }
+            #endregion
+
             if (ProfileUser.Equals("Cliente"))
             {
                 try
@@ -163,7 +189,7 @@ namespace HireMe.ViewModel
                         "ok");
                     }
                 }
-                catch (System.Exception e)
+                catch (Exception e)
                 {
                     IsRuning = false;
                     await Application.Current.MainPage.DisplayAlert(
@@ -171,7 +197,7 @@ namespace HireMe.ViewModel
                         e.Message,
                         "ok");
                 }
-                
+
             }
             if (ProfileUser.Equals("Trabajador"))
             {
@@ -188,7 +214,7 @@ namespace HireMe.ViewModel
                     await App.Database.SaveUser(userWhm);
 
                     //Este metedod para obtener el ID del usurio que se ha registrado Si funciona.
-                    
+
                     userworker.Id_userhm = App.Database.getUserId(Mail);
                     userworker.profesion = Profession;
                     int success = await App.Database.SaveUserWorker(userworker);
@@ -202,7 +228,7 @@ namespace HireMe.ViewModel
                         "ok");
                     }
                 }
-                catch (System.Exception r)
+                catch (Exception r)
                 {
                     IsRuning = false;
                     await Application.Current.MainPage.DisplayAlert(
@@ -245,7 +271,7 @@ namespace HireMe.ViewModel
                     objAddress = (Address)response.Result;
                     this.Location = objAddress.Candidates[0].Name;
                 }
-                catch (System.Exception e)
+                catch (Exception e)
                 {
                     await Application.Current.MainPage.DisplayAlert(
                         "Mensaje",
@@ -254,25 +280,27 @@ namespace HireMe.ViewModel
                     IsRuning = false;
                     return;
                 }
-             
+
                 IsRuning = false;
                 //this.Address = new List<Address>(this.addressList);
-                
-            }
-            
-        }
 
-        public async void ValidarFormulario(string values)
+            }
+
+        }
+        
+        public void CheckUserProfile()
         {
-            if (string.IsNullOrEmpty(values))
+            
+            if (!string.IsNullOrEmpty(this.ProfileUser))
             {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "Falta algunos datos, revise por favor",
-                    "Aceptar");
-                IsRuning = false;
-                IsEnabled = true;
-                return;
+                if (this.ProfileUser.Equals("Trabajador"))
+                {
+                    IsVisibleProf = true;
+                }
+                if (this.ProfileUser.Equals("Cliente"))
+                {
+                    IsVisibleProf = false;
+                }
             }
         }
         #endregion
