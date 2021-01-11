@@ -1,12 +1,11 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
+﻿
 namespace HireMe
 {
     using View;
     using Data;
     using System.IO;
+    using System;
+    using Xamarin.Forms;
 
     public partial class App : Application
     {
@@ -24,15 +23,20 @@ namespace HireMe
             }
         }
 
+        #region Properties
+        public static NavigationPage Navigator { get; internal set; }
+        #endregion
+
+        #region Constructors
         public App()
         {
             InitializeComponent();
 
             MainPage = new NavigationPage(new LoginPage());
-
-           // MainPage = new MainPage();
         }
+        #endregion
 
+        #region Methods
         protected override void OnStart()
         {
         }
@@ -43,6 +47,7 @@ namespace HireMe
 
         protected override void OnResume()
         {
-        }
+        } 
+        #endregion
     }
 }

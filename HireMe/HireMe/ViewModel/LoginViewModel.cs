@@ -5,15 +5,21 @@ using System.Text;
 namespace HireMe.ViewModel
 {
     using GalaSoft.MvvmLight.Command;
-    using System.ComponentModel;
     using System.Windows.Input;
     using View;
     using Models;
     using Xamarin.Forms;
     /*
      * USUARIOS REGISTRADOS
-     * pablo@gmail.com 123 Cliente  
-     * mario@gmail.com 123 Trabajador
+     * cliente
+     * pablo dominguez
+     * carlos silva
+     * 
+     * workers
+     * Anna sanchez maestra de matematicas
+     * samuel samudio electrico, tecnico en aires
+     * angel gonzales mecanico
+     * luis madrid plomero, jardinero
      */
     public class LoginViewModel : BaseViewModel
     {
@@ -150,16 +156,16 @@ namespace HireMe.ViewModel
             IsRuning = false;
             IsEnable = true;
             
-            await Application.Current.MainPage.DisplayAlert(
+            /*await Application.Current.MainPage.DisplayAlert(
                     "Mensaje",
                     "Bienvenido",
-                    "Aceptar");
+                    "Aceptar");*/
             //linea para obtener los datos del usuario que inicio sesion
             UsersHm user = App.Database.getUserHm(this.Mail).Result;
             this.Mail = string.Empty; this.Password = string.Empty;
             //lineas para pasar a la siguiente interfaz, enlanzando la viewModel con la View
             MainViewModel.GetInstance().Searchvm = new SearchViewModel(user);
-            await Application.Current.MainPage.Navigation.PushAsync(new SearchPage());
+            Application.Current.MainPage = new NavigationPage(new MasterPage());
             
         }
 

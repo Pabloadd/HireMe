@@ -11,33 +11,25 @@ namespace HireMe.ViewModel
     class SearchViewModel : BaseViewModel
     {
 
+        #region Constructors
         public SearchViewModel(UsersHm user)
         {
             this.user = user;
             LoadListUsers();
-
         }
 
         public SearchViewModel()
         {
 
-        }
+        } 
+        #endregion
 
         #region Attribitues
         public UsersHm user;
 
+        private string filter;
         private List<SearchItemViewModel> listUsers;
         private bool isRefreshing;
-        #endregion
-
-        #region Commands
-        public ICommand SearchsPostsBtn
-        {
-            get
-            {
-                return new RelayCommand(SearchsPostsMethod);
-            }
-        }
         #endregion
 
         #region Properties
@@ -50,9 +42,34 @@ namespace HireMe.ViewModel
         public bool IsRefreshing
         {
             get { return isRefreshing; }
+            set { SetValue(ref isRefreshing, value); }
+        }
+
+        public string Filter
+        {
+            get { return filter; }
             set 
             { 
-                SetValue(ref isRefreshing, value);
+                SetValue(ref filter, value);
+                SearchProf();
+            }
+        }
+        #endregion
+
+        #region Commands
+        public ICommand SearchsPostsBtn
+        {
+            get
+            {
+                return new RelayCommand(SearchsPostsMethod);
+            }
+        }
+
+        public ICommand SearchCommand
+        {
+            get
+            {
+                return new RelayCommand(SearchProf);
             }
         }
         #endregion
@@ -71,6 +88,30 @@ namespace HireMe.ViewModel
             await Application.Current.MainPage.Navigation.PushAsync(new SearchPostPage());
         }
 
+        public async void SearchProf()
+        {
+            if (string.IsNullOrEmpty(this.Filter))
+            {
+                LoadListUsers();
+            }
+            else
+            {
+                try
+                {
+                    IsRefreshing = true;
+                    this.ListUser = App.Database.GetUsersWorkersFilter(Filter);
+                    IsRefreshing = false;
+                }
+                catch (System.Exception e)
+                {
+                    await Application.Current.MainPage.DisplayAlert(
+                        "Mensaje",
+                        e.Message,
+                        "Aceptar");
+                    return;
+                }
+            }
+        }
         #endregion
     }
 }

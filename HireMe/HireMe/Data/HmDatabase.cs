@@ -84,15 +84,26 @@ namespace HireMe.Data
             /*List<UsersWorkerModel> result = list.Result;*/
             return list;
         }
+
+        public List<SearchItemViewModel> GetUsersWorkersFilter(string filter)
+        {
+            List<SearchItemViewModel> filterList;
+            filterList = _database.QueryAsync<SearchItemViewModel>("Select UsersHm.Nombre_c, UsersHm.Apellido_user, UsersHm.Mail_user, UsersHm.Celular, UsersHm.Ubicacion, UsersWorkers.profesion " +
+                "from UsersHm, UsersWorkers " +
+                "Where UsersHm.Id_userhm = UsersWorkers.Id_userhm and UsersWorkers.profesion like '%" + filter + "%'").Result;
+            return filterList;
+        }
         
         public Task<int> BorrarDataDB()
         {
-            var objetosUW = _database.DeleteAllAsync<UsersWorkers>();
+            /*var objetosUW = _database.DeleteAllAsync<UsersWorkers>();
             Console.WriteLine(objetosUW.Result + "fueron borrados de la tabla UW");
             var objetosUH = _database.DeleteAllAsync<UsersHm>();
-            Console.WriteLine(objetosUH.Result + "fueron borrados de la tabla HM");
-            var resutl = objetosUH.Result + objetosUW.Result;
-            return objetosUW;   
+            Console.WriteLine(objetosUH.Result + "fueron borrados de la tabla HM");*/
+            var objetosPost = _database.DeleteAllAsync<PostUsers>();
+            Console.WriteLine(objetosPost.Result + "fueron borrados de la tabla PostUsers");
+            
+            return objetosPost;   
         }
 
         public int ConsultaLogin(string Mail, string Passw)

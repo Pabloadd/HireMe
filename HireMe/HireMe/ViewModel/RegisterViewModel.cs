@@ -21,7 +21,6 @@ namespace HireMe.ViewModel
         }
         #endregion
 
-
         #region Atributes
         private string profileuser;
         private string name;
@@ -38,7 +37,6 @@ namespace HireMe.ViewModel
         private string findAddress;
         private ApiService apiService;
         private Address objAddress;
-        private int flagMessageValidation = 0;
         #endregion
 
         #region Properties

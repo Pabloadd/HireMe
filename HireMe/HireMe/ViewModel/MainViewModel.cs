@@ -1,6 +1,9 @@
 ﻿
+
+
 namespace HireMe.ViewModel
 {
+    using System.Collections.ObjectModel;
     class MainViewModel
     {
         #region Constructors
@@ -8,8 +11,12 @@ namespace HireMe.ViewModel
         {
             instance = this;
             this.Login = new LoginViewModel();
-            
+            LoadMenu();
         }
+        #endregion
+
+        #region Properties
+        public ObservableCollection<MenuItemViewModel> Menus { get; set; }
         #endregion
 
         #region ViewModels
@@ -37,6 +44,31 @@ namespace HireMe.ViewModel
 
         #endregion
 
-        
+        #region Methods
+        private void LoadMenu()
+        {
+            this.Menus = new ObservableCollection<MenuItemViewModel>();
+            
+            this.Menus.Add(new MenuItemViewModel
+            {
+                Icon = "ic_account",
+                PageName = "MyProfilePage",
+                Title = "Mi Perfil"
+            });
+            this.Menus.Add(new MenuItemViewModel
+            {
+                Icon = "ic_settings",
+                PageName = "MyProfile",
+                Title = "Configurar"
+            });
+            this.Menus.Add(new MenuItemViewModel
+            {
+                Icon = "ic_logout",
+                PageName = "LoginPage",
+                Title = "Cerrar Sesion"
+            });
+        }
+        #endregion
+
     }
 }

@@ -5,24 +5,28 @@
              Title="Buscar Cliente"
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
     <ContentPage.Content>
-        <ScrollView BindingContext="{Binding Searchvm}">
-            <StackLayout Margin="10,20">
-                <StackLayout>
-                    <SearchBar></SearchBar>
-                    <StackLayout Orientation="Horizontal">
-                        <Button Text="Mecanico" FontSize="Small"/>
-                        <Button Text="Electricista" FontSize="Small"/>
-                    </StackLayout>
-                    <Button 
-                        Command="{Binding SearchsPostsBtn}"
-                        Text="Publicaciones" 
-                        FontSize="Small"
-                        TextColor="Black"
-                        BackgroundColor="AliceBlue"
-                        VerticalOptions="Center"
-                        HorizontalOptions="FillAndExpand"/>
+        <StackLayout 
+            Margin="10,20"
+            BindingContext="{Binding Searchvm}">
+            <StackLayout>
+                <SearchBar
+                    Text="{Binding Filter, Mode=TwoWay}"
+                    SearchCommand="{Binding SearchCommand}"/>
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Mecanico" FontSize="Small"/>
+                    <Button Text="Electricista" FontSize="Small"/>
                 </StackLayout>
-                
+                <Button 
+                    Command="{Binding SearchsPostsBtn}"
+                    Text="Publicaciones" 
+                    FontSize="Small"
+                    TextColor="Black"
+                    BackgroundColor="AliceBlue"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+
+            <ScrollView>
                 <ListView
                     ItemsSource="{Binding ListUser}"
                     IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
@@ -38,7 +42,7 @@
                                     CornerRadius="20"
                                     HasShadow="True">
                                     <!-- el gesture en cada elemento del xml permite que todo puede ser bindiable y ademas de aplicarle
-                                    un gesto en especifico para programa segun la accion establecida-->
+                                un gesto en especifico para programa segun la accion establecida-->
                                     <Frame.GestureRecognizers>
                                         <TapGestureRecognizer
                                             Command="{Binding SelectUserCommand}"/>
@@ -58,7 +62,7 @@
                                             <Label 
                                                 Text="{Binding profesion}"
                                                 TextColor="Black"
-                                                FontSize="Medium"/>
+                                                FontSize="Body"/>
                                         </StackLayout>
                                         <!-- en la columna 1 se puede agregar un contenido-->
                                     </Grid>
@@ -67,7 +71,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </StackLayout>
-        </ScrollView>
+            </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

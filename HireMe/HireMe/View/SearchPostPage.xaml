@@ -41,15 +41,16 @@
                                     <Label
                                         Text="{Binding UserName}"
                                         TextColor="Black"
-                                        FontSize="Medium"/>
+                                        FontSize="Medium" 
+                                        FontAttributes="Bold"/>
                                     <Label
                                         Text="{Binding fechaPost}"
-                                        TextColor="Black"
-                                        FontSize="Small"/>
+                                        TextColor="Gray"
+                                        FontSize="Micro"/>
                                     <Label
                                         Text="{Binding PostText}"
                                         TextColor="Black"
-                                        FontSize="Medium"/>
+                                        FontSize="Body"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

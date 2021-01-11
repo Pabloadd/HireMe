@@ -35,11 +35,7 @@ namespace HireMe.ViewModel
         public bool IsRefreshingPosts
         {
             get { return isRefreshingPosts; }
-            set 
-            { 
-                SetValue(ref isRefreshingPosts, value);
-                LoadListPosts();
-            }
+            set { SetValue(ref isRefreshingPosts, value); }
         }
 
         
@@ -82,7 +78,7 @@ namespace HireMe.ViewModel
             var usernamepost = sessionUser.Nombre_c +" "+ sessionUser.Apellido_user;
             post.UserName = usernamepost;
             post.PostText = this.EntryPostUser;
-            post.fechaPost = DateTime.UtcNow.ToString();
+            post.fechaPost = DateTime.Now.ToString();
             post.IdId_userhm = sessionUser.Id_userhm;
             try
             {
@@ -94,6 +90,7 @@ namespace HireMe.ViewModel
                         "Notificacion",
                         "Su publicacion ha sido enviada.",
                         "Aceptar");
+                    this.LoadListPosts();
                 }
             }
             catch (Exception e)
@@ -108,10 +105,12 @@ namespace HireMe.ViewModel
 
         public async void LoadListPosts()
         {
-            IsRefreshingPosts = true;
+            
             try
             {
+                IsRefreshingPosts = true;
                 this.ListPosts = App.Database.GetPosts().Result;
+                IsRefreshingPosts = false;
             }
             catch (Exception e)
             {
@@ -120,7 +119,7 @@ namespace HireMe.ViewModel
                     "Algio salio mal al cargar la lista. " + e.Message,
                     "Aceptar");
             }
-            IsRefreshingPosts = false;
+            
         }
         #endregion
     }

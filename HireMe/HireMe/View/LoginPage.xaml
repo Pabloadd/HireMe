@@ -11,6 +11,7 @@
                 <Label 
                     Text="HireMe"
                     FontSize="Header"
+                    HorizontalOptions="CenterAndExpand"
                     Padding="20,0,0,10"/>
 
                 <Grid 
@@ -23,6 +24,7 @@
                         Grid.Row="0"
                         Grid.Column="0"
                         VerticalOptions="Center"
+                        HorizontalOptions="Center"
                         FontSize="15"
                         Text="Mail"/>
                     <Entry 
@@ -35,6 +37,7 @@
                     <Label
                         Text="Contrasena"
                         VerticalOptions="Center"
+                        HorizontalOptions="Center"
                         Grid.Row="1"
                         Grid.Column="0"/>
                     <Entry 

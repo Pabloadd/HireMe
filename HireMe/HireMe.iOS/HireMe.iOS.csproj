@@ -139,4 +139,13 @@
   <ItemGroup>
     <BundleResource Include="Resources\iglogo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_account.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_settings.png" />
+  </ItemGroup>
 </Project>
