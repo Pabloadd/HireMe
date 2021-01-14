@@ -3,7 +3,10 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:HireMe.View"
-    x:Class="HireMe.View.MasterPage">
+    x:Class="HireMe.View.MasterPage"
+    NavigationPage.HasNavigationBar="False">
+    <!-- The line before was set because in the UI 
+    appears two tittle bars caused by the NavegationPage-->
     
     <MasterDetailPage.Master>
         <pages:MenuPage></pages:MenuPage>

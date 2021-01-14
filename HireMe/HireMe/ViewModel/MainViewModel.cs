@@ -1,6 +1,4 @@
 ﻿
-
-
 namespace HireMe.ViewModel
 {
     using System.Collections.ObjectModel;

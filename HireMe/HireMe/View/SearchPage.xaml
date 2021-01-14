@@ -11,6 +11,7 @@
             <StackLayout>
                 <SearchBar
                     Text="{Binding Filter, Mode=TwoWay}"
+                    Placeholder="Ingresa una profesion"
                     SearchCommand="{Binding SearchCommand}"/>
                 <StackLayout Orientation="Horizontal">
                     <Button Text="Mecanico" FontSize="Small"/>

@@ -2,9 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="Menu"
              x:Class="HireMe.View.MenuPage"
-             BackgroundColor="Beige">
+             BackgroundColor="Beige"
+             Title="Menu" NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ListView 
             ItemsSource="{Binding Menus}"

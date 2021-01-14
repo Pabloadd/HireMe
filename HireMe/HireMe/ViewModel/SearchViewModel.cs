@@ -83,11 +83,11 @@ namespace HireMe.ViewModel
         }
         public async void SearchsPostsMethod()
         {
-            SearchViewModel Svm = new SearchViewModel();
+            
             MainViewModel.GetInstance().SearchPostvm = new SearchPostViewModel(this.user);
             await Application.Current.MainPage.Navigation.PushAsync(new SearchPostPage());
+            
         }
-
         public async void SearchProf()
         {
             if (string.IsNullOrEmpty(this.Filter))
