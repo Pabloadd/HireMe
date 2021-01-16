@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HireMe.View.MyProfilePage">
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding MyProfile}"
+            Margin="15,10,15,0">
+            <StackLayout
+                Orientation="Horizontal"
+                Margin="0">
+                <Image
+                    Source="ic_account"
+                    HorizontalOptions="CenterAndExpand"/>
+                
+                <Button
+                    Text="Editar Perfil"
+                    BackgroundColor="Black"
+                    TextColor="WhiteSmoke"
+                    CornerRadius="8"
+                    HorizontalOptions="End"
+                    Command="{Binding EditCommand}"/>
+            </StackLayout>
+
+            <Grid RowSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Label
+                    Text="Nombre"
+                    TextColor="Black"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Row="0"
+                    Grid.Column="0"/>
+                <Entry
+                    Placeholder="Nombre"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="{Binding Name,Mode=TwoWay}"
+                    IsEnabled="{Binding IsEnabled}"/>
+                
+                <Label
+                    Text="Apellido"
+                    TextColor="Black"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Row="1"
+                    Grid.Column="0"/>
+                <Entry
+                    Placeholder="Apellido"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="{Binding LastName,Mode=TwoWay}"
+                    IsEnabled="{Binding IsEnabled}"/>
+                
+                <Label
+                    Text="Contraseña"
+                    TextColor="Black"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Row="2"
+                    Grid.Column="0"/>
+                <Entry
+                    IsPassword="True"
+                    Placeholder="love_you"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="{Binding Password,Mode=TwoWay}"
+                    IsEnabled="{Binding IsEnabled}"/>
+                
+                <Label
+                    Text="Ubicacion"
+                    TextColor="Black"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Row="3"
+                    Grid.Column="0"/>
+                <Entry
+                    Placeholder="Ubicacion"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Text="{Binding Location,Mode=TwoWay}"
+                    IsEnabled="{Binding IsEnabled}"/>
+                
+                <Label
+                    Text="Celular"
+                    TextColor="Black"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Row="4"
+                    Grid.Column="0"/>
+                <Entry
+                    Placeholder="61200000"
+                    Keyboard="Telephone"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Text="{Binding Phone,Mode=TwoWay}"
+                    IsEnabled="{Binding IsEnabled}"/>
+                
+                <Label
+                    Text="Profesion"
+                    TextColor="Black"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    IsVisible="{Binding IsVisible}"/>
+                <Entry
+                    Placeholder="Jardinero, Ing. Electrico..."
+                    Keyboard="Text"
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Text="{Binding Profesion,Mode=TwoWay}"
+                    IsEnabled="{Binding IsEnabled}"
+                    IsVisible="{Binding IsVisible}"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -161,10 +161,11 @@ namespace HireMe.ViewModel
                     "Bienvenido",
                     "Aceptar");*/
             //linea para obtener los datos del usuario que inicio sesion
-            UsersHm user = App.Database.getUserHm(this.Mail).Result;
+            UsersHm login_user = App.Database.getUserHm(this.Mail).Result;
             this.Mail = string.Empty; this.Password = string.Empty;
             //lineas para pasar a la siguiente interfaz, enlanzando la viewModel con la View
-            MainViewModel.GetInstance().Searchvm = new SearchViewModel(user);
+            
+            MainViewModel.GetInstance().Searchvm = new SearchViewModel(login_user);
             Application.Current.MainPage = new NavigationPage(new MasterPage());
             
         }

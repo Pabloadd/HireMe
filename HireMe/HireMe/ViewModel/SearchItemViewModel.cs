@@ -7,7 +7,6 @@ namespace HireMe.ViewModel
     using GalaSoft.MvvmLight.Command;
     using Models;
     using View;
-    using ViewModel;
     using System.Windows.Input;
     using Xamarin.Forms;
 

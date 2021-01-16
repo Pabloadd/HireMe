@@ -17,10 +17,4 @@ namespace HireMe.Models
 
         public string profesion { get; set; }
     }
-    
-/*
- "Select UsersHm.Nombre_c, UsersHm.Apellido_user, UsersWorkers.profesion " +
-                "from UsersHm, UsersWorkers " +
-                "Where UsersHm.Id_userhm = UsersWorkers.Id_userhm"
- */
 }

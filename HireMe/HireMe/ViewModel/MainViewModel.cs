@@ -2,6 +2,7 @@
 namespace HireMe.ViewModel
 {
     using System.Collections.ObjectModel;
+    using Models;
     class MainViewModel
     {
         #region Constructors
@@ -26,6 +27,7 @@ namespace HireMe.ViewModel
         public SearchPostViewModel SearchPostvm { get; set; }
 
         public PerfilUserViewModel Perfiluser { get; set; }
+        public MyProfileViewModel MyProfile { get; set; }
         #endregion
 
         #region Singleton

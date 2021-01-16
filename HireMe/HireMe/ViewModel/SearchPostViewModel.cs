@@ -45,9 +45,6 @@ namespace HireMe.ViewModel
         private string entryPostUser;
         private List<PostUsers> listPosts;
         private bool isRefreshingPosts;
-        private string nameUserPost;
-        private string datePost;
-        private string descriptionPost;
 
         private UsersHm sessionUser;
         #endregion

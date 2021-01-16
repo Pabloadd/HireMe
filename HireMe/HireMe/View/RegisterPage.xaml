@@ -95,7 +95,7 @@
                     <Entry
                         Grid.Row="4"
                         Grid.Column="1"
-                        Keyboard="Numeric"
+                        Keyboard="Telephone"
                         Placeholder="60000000"
                         Text="{Binding Phone, Mode=TwoWay}" FontSize="Medium"/>
                     <Label

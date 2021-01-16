@@ -25,24 +25,30 @@
                         Grid.Column="0"
                         VerticalOptions="Center"
                         HorizontalOptions="Center"
-                        FontSize="15"
+                        FontSize="Medium"
+                        TextColor="black"
                         Text="Mail"/>
                     <Entry 
                         Grid.Row="0"
                         Grid.Column="1"
                         Keyboard="Email"
                         Text="{Binding Mail, Mode=TwoWay}"
-                        FontSize="15"
+                        FontSize="Medium"
+                        TextColor="black"
                         Placeholder="ejemplo@mail.com" />
                     <Label
                         Text="Contrasena"
                         VerticalOptions="Center"
+                        FontSize="Medium"
                         HorizontalOptions="Center"
+                        TextColor="black"
                         Grid.Row="1"
                         Grid.Column="0"/>
                     <Entry 
                         Grid.Row="1"
                         Grid.Column="1"
+                        FontSize="Medium"
+                        TextColor="black"
                         IsPassword="True"
                         Text="{Binding Password, Mode=TwoWay}"
                         Placeholder="*******" />

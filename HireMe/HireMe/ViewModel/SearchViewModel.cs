@@ -12,9 +12,9 @@ namespace HireMe.ViewModel
     {
 
         #region Constructors
-        public SearchViewModel(UsersHm user)
+        public SearchViewModel(UsersHm login_user)
         {
-            this.user = user;
+            this.login_user = login_user;
             LoadListUsers();
         }
 
@@ -25,7 +25,7 @@ namespace HireMe.ViewModel
         #endregion
 
         #region Attribitues
-        public UsersHm user;
+        public UsersHm login_user;
 
         private string filter;
         private List<SearchItemViewModel> listUsers;
@@ -83,13 +83,16 @@ namespace HireMe.ViewModel
         }
         public async void SearchsPostsMethod()
         {
-            
-            MainViewModel.GetInstance().SearchPostvm = new SearchPostViewModel(this.user);
+            MainViewModel.GetInstance().SearchPostvm = new SearchPostViewModel(this.login_user);
             await Application.Current.MainPage.Navigation.PushAsync(new SearchPostPage());
             
         }
         public async void SearchProf()
         {
+            /* 
+             * This method is for list users through the filter, 
+             * using the SearchCommand where the people write a profession
+             */
             if (string.IsNullOrEmpty(this.Filter))
             {
                 LoadListUsers();
@@ -111,6 +114,11 @@ namespace HireMe.ViewModel
                     return;
                 }
             }
+        }
+
+        public UsersHm getLoginUser()
+        {
+            return this.login_user;
         }
         #endregion
     }
