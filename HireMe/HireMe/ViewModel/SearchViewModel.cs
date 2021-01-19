@@ -8,7 +8,7 @@ namespace HireMe.ViewModel
     using Xamarin.Forms;
     using View;
 
-    class SearchViewModel : BaseViewModel
+    public class SearchViewModel : BaseViewModel
     {
 
         #region Constructors
@@ -18,9 +18,10 @@ namespace HireMe.ViewModel
             LoadListUsers();
         }
 
-        public SearchViewModel()
+        public SearchViewModel(string login_user_mail)
         {
-
+            ConsultUser(login_user_mail);
+            LoadListUsers();
         } 
         #endregion
 
@@ -84,7 +85,7 @@ namespace HireMe.ViewModel
         public async void SearchsPostsMethod()
         {
             MainViewModel.GetInstance().SearchPostvm = new SearchPostViewModel(this.login_user);
-            await Application.Current.MainPage.Navigation.PushAsync(new SearchPostPage());
+            await App.Navigator.PushAsync(new SearchPostPage());
             
         }
         public async void SearchProf()
@@ -115,10 +116,9 @@ namespace HireMe.ViewModel
                 }
             }
         }
-
-        public UsersHm getLoginUser()
+        public void ConsultUser(string login_user_mail)
         {
-            return this.login_user;
+            this.login_user = App.Database.getUserHm(login_user_mail).Result;
         }
         #endregion
     }

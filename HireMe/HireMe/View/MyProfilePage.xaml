@@ -70,7 +70,7 @@
                     Grid.Column="0"/>
                 <Entry
                     IsPassword="True"
-                    Placeholder="love_you"
+                    Placeholder="******"
                     Grid.Row="2"
                     Grid.Column="1"
                     Text="{Binding Password,Mode=TwoWay}"

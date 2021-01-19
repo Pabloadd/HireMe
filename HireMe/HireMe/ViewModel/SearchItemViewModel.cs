@@ -35,7 +35,7 @@ namespace HireMe.ViewModel
         private async void SelectUser()
         {
             MainViewModel.GetInstance().Perfiluser = new PerfilUserViewModel(this);
-            await Application.Current.MainPage.Navigation.PushAsync( new PerfilUserPage());
+            await App.Navigator.PushAsync( new PerfilUserPage());
         }
         #endregion
 

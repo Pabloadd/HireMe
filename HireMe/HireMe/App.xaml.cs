@@ -6,6 +6,8 @@ namespace HireMe
     using System.IO;
     using System;
     using Xamarin.Forms;
+    using Helpers;
+    using ViewModel;
 
     public partial class App : Application
     {
@@ -31,8 +33,16 @@ namespace HireMe
         public App()
         {
             InitializeComponent();
-
-            MainPage = new NavigationPage(new LoginPage());
+            if (string.IsNullOrEmpty(Settings.Login_User_ID))
+            {
+                MainPage = new NavigationPage(new LoginPage());
+            }
+            else
+            {
+                MainViewModel.GetInstance().Searchvm = new SearchViewModel(Settings.Login_User_Mail);
+                MainPage = new MasterPage();
+            }
+            //MainPage = new NavigationPage(new LoginPage());
         }
         #endregion
 

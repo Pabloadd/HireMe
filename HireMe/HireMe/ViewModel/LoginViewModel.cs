@@ -9,6 +9,7 @@ namespace HireMe.ViewModel
     using View;
     using Models;
     using Xamarin.Forms;
+    using Helpers;
     /*
      * USUARIOS REGISTRADOS
      * cliente
@@ -39,6 +40,7 @@ namespace HireMe.ViewModel
         private string password;
         private bool isEnable;
         private string mail;
+        private bool isSession;
 
         
         #endregion
@@ -77,7 +79,11 @@ namespace HireMe.ViewModel
                 SetValue(ref isRuning, value);
             }
         }
-        public bool IsSesion { get; set; }
+        public bool IsSesion 
+        {
+            get { return isSession; }
+            set { SetValue(ref isSession, value); } 
+        }
         public bool IsEnable 
         {
             get
@@ -162,11 +168,26 @@ namespace HireMe.ViewModel
                     "Aceptar");*/
             //linea para obtener los datos del usuario que inicio sesion
             UsersHm login_user = App.Database.getUserHm(this.Mail).Result;
+            if (this.IsSesion)
+            {
+                try
+                {
+                    Settings.Login_User_Mail = login_user.Mail_user;
+                    Settings.Login_User_ID = login_user.Id_userhm.ToString();
+                }
+                catch (Exception e)
+                {
+                    await Application.Current.MainPage.DisplayAlert(
+                            "Error",
+                            "Mensaje: " + e,
+                            "Aceptar");
+                    return;
+                }
+            }
             this.Mail = string.Empty; this.Password = string.Empty;
             //lineas para pasar a la siguiente interfaz, enlanzando la viewModel con la View
-            
             MainViewModel.GetInstance().Searchvm = new SearchViewModel(login_user);
-            Application.Current.MainPage = new NavigationPage(new MasterPage());
+            Application.Current.MainPage = new MasterPage();
             
         }
 

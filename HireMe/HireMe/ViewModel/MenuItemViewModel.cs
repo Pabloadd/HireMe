@@ -5,8 +5,7 @@ namespace HireMe.ViewModel
     using System.Windows.Input;
     using Xamarin.Forms;
     using View;
-    using Models;
-    using ViewModel;
+    using Helpers;
 
     public class MenuItemViewModel
     {
@@ -17,7 +16,6 @@ namespace HireMe.ViewModel
         #endregion
 
         #region vars
-        private UsersHm login_user;
         
         #endregion
 
@@ -44,22 +42,15 @@ namespace HireMe.ViewModel
         {
             if (this.PageName == "LoginPage")
             {
+                Settings.Login_User_ID = string.Empty;
+                Settings.Login_User_Mail = string.Empty;
                 Application.Current.MainPage = new LoginPage();
             }
             if (this.PageName == "MyProfilePage")
             {
-                SearchViewModel search = new SearchViewModel();
-                login_user = search.getLoginUser();
-                if (this.login_user == null)
-                {
-                    await Application.Current.MainPage.DisplayAlert(
-                            "Error",
-                            "Login user null",
-                            "Aceptar");
-                    return;
-                }
-                MainViewModel.GetInstance().MyProfile = new MyProfileViewModel(this.login_user);
-                await Application.Current.MainPage.Navigation.PushAsync(new MyProfilePage());
+                
+                MainViewModel.GetInstance().MyProfile = new MyProfileViewModel();
+                await App.Navigator.PushAsync(new MyProfilePage());
             }
         }
         #endregion
