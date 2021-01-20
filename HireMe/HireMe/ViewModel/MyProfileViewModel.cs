@@ -7,16 +7,13 @@ namespace HireMe.ViewModel
     public class MyProfileViewModel : BaseViewModel
     {
         #region Constructor
-        public MyProfileViewModel(UsersHm login_user)
+        public MyProfileViewModel(string login_user_mail)
         {
-            this.login_user = login_user;
             IsEnabled = false;
             IsVisible = false;
+            ConsultUser(login_user_mail);
             SetUserDataForm();
-        }
-
-        public MyProfileViewModel()
-        {
+            
         }
         #endregion
 
@@ -90,12 +87,16 @@ namespace HireMe.ViewModel
         }
         private void SetUserDataForm()
         {
-            Name = this.login_user.Nombre_c;
-            LastName = this.login_user.Apellido_user;
-            Password = this.login_user.Password_user;
-            Location = this.login_user.Ubicacion;
-            Phone = this.login_user.Celular;
+            this.Name = this.login_user.Nombre_c;
+            this.LastName = this.login_user.Apellido_user;
+            this.Password = this.login_user.Password_user;
+            this.Location = this.login_user.Ubicacion;
+            this.Phone = this.login_user.Celular;
 
+        }
+        public void ConsultUser(string login_user_mail)
+        {
+            this.login_user = App.Database.getUserHm(login_user_mail).Result;
         }
         #endregion
     }

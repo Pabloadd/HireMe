@@ -170,19 +170,8 @@ namespace HireMe.ViewModel
             UsersHm login_user = App.Database.getUserHm(this.Mail).Result;
             if (this.IsSesion)
             {
-                try
-                {
-                    Settings.Login_User_Mail = login_user.Mail_user;
-                    Settings.Login_User_ID = login_user.Id_userhm.ToString();
-                }
-                catch (Exception e)
-                {
-                    await Application.Current.MainPage.DisplayAlert(
-                            "Error",
-                            "Mensaje: " + e,
-                            "Aceptar");
-                    return;
-                }
+                Settings.Login_User_Mail = this.Mail;
+                //Settings.Login_User_ID = login_user.Id_userhm.ToString();   
             }
             this.Mail = string.Empty; this.Password = string.Empty;
             //lineas para pasar a la siguiente interfaz, enlanzando la viewModel con la View

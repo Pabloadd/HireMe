@@ -12,9 +12,9 @@ namespace HireMe.ViewModel
     {
         // EN EL CONSTRUCTOR SE DEBE RECIBIR EL USUARIO QUE INICO SESION
         #region constructor
-        public SearchPostViewModel(UsersHm user)
+        public SearchPostViewModel(UsersHm login_user)
         {
-            sessionUser = user;
+            this.login_user = login_user;
             this.LoadListPosts();
         }
         #endregion
@@ -46,7 +46,7 @@ namespace HireMe.ViewModel
         private List<PostUsers> listPosts;
         private bool isRefreshingPosts;
 
-        private UsersHm sessionUser;
+        private UsersHm login_user;
         #endregion
 
         #region Commands
@@ -72,11 +72,19 @@ namespace HireMe.ViewModel
                 return;
             }
             PostUsers post = new PostUsers();
-            var usernamepost = sessionUser.Nombre_c +" "+ sessionUser.Apellido_user;
+            if (this.login_user == null)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                        "Error",
+                        "login user null",
+                        "Aceptar");
+                return;
+            }
+            var usernamepost = this.login_user.Nombre_c +" "+ this.login_user.Apellido_user;
             post.UserName = usernamepost;
             post.PostText = this.EntryPostUser;
             post.fechaPost = DateTime.Now.ToString();
-            post.IdId_userhm = sessionUser.Id_userhm;
+            post.IdId_userhm = this.login_user.Id_userhm;
             try
             {
                 var result = await App.Database.SavePostUser(post);

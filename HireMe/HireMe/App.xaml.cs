@@ -33,7 +33,7 @@ namespace HireMe
         public App()
         {
             InitializeComponent();
-            if (string.IsNullOrEmpty(Settings.Login_User_ID))
+            if (string.IsNullOrEmpty(Settings.Login_User_Mail))
             {
                 MainPage = new NavigationPage(new LoginPage());
             }

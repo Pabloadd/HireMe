@@ -42,14 +42,14 @@ namespace HireMe.ViewModel
         {
             if (this.PageName == "LoginPage")
             {
-                Settings.Login_User_ID = string.Empty;
+                //Settings.Login_User_ID = string.Empty;
                 Settings.Login_User_Mail = string.Empty;
                 Application.Current.MainPage = new LoginPage();
             }
             if (this.PageName == "MyProfilePage")
             {
                 
-                MainViewModel.GetInstance().MyProfile = new MyProfileViewModel();
+                MainViewModel.GetInstance().MyProfile = new MyProfileViewModel(Settings.Login_User_Mail);
                 await App.Navigator.PushAsync(new MyProfilePage());
             }
         }

@@ -17,8 +17,8 @@ namespace HireMe.Helpers
 
         #region Setting Constants
 
-        private const string login_user_mail = "";
-        private const string login_user_id = "";
+        private const string login_mail = "";
+        //private const string login_user_id = "";
         private static readonly string SettingsDefault = string.Empty;
 
         #endregion
@@ -28,15 +28,15 @@ namespace HireMe.Helpers
         {
             get
             {
-                return AppSettings.GetValueOrDefault(login_user_mail, SettingsDefault);
+                return AppSettings.GetValueOrDefault(login_mail, SettingsDefault);
             }
             set
             {
-                AppSettings.AddOrUpdateValue(login_user_mail, value);
+                AppSettings.AddOrUpdateValue(login_mail, value);
             }
         }
 
-        public static string Login_User_ID
+        /*public static string Login_User_ID
         {
             get
             {
@@ -46,6 +46,6 @@ namespace HireMe.Helpers
             {
                 AppSettings.AddOrUpdateValue(login_user_id, value);
             }
-        }
+        }*/
     }
 }
