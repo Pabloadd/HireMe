@@ -41,43 +41,23 @@ namespace HireMe.ViewModel
         private bool isEnable;
         private string mail;
         private bool isSession;
-
-        
         #endregion
 
         #region Properties
         public string Mail 
         {
-            get
-            {
-                return mail;
-            }
-            set
-            {
-                SetValue(ref mail, value);
-            }
+            get { return mail;}
+            set { SetValue(ref mail, value); }
         }
         public string Password 
         {
-            get
-            {
-                return password;
-            }
-            set
-            {
-                SetValue(ref password, value);
-            } 
+            get { return password; }
+            set { SetValue(ref password, value); } 
         }
         public bool IsRuning 
-        {
-            get
-            {
-                return isRuning;
-            }
-            set
-            {
-                SetValue(ref isRuning, value);
-            }
+        { 
+            get { return isRuning; }
+            set { SetValue(ref isRuning, value); }
         }
         public bool IsSesion 
         {
@@ -86,14 +66,8 @@ namespace HireMe.ViewModel
         }
         public bool IsEnable 
         {
-            get
-            {
-                return isEnable;
-            }
-            set
-            {
-                SetValue(ref isEnable, value);
-            }
+            get { return isEnable; }
+            set { SetValue(ref isEnable, value); }
         }
 
         #endregion
@@ -162,10 +136,6 @@ namespace HireMe.ViewModel
             IsRuning = false;
             IsEnable = true;
             
-            /*await Application.Current.MainPage.DisplayAlert(
-                    "Mensaje",
-                    "Bienvenido",
-                    "Aceptar");*/
             //linea para obtener los datos del usuario que inicio sesion
             UsersHm login_user = App.Database.getUserHm(this.Mail).Result;
             if (this.IsSesion)
@@ -183,7 +153,9 @@ namespace HireMe.ViewModel
         private async void Register()
         {
             MainViewModel.GetInstance().Register = new RegisterViewModel();
+            
             await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
+            
         }
 
         public void operacionDeleteTables()

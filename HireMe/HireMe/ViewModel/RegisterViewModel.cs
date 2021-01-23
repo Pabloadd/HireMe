@@ -177,15 +177,15 @@ namespace HireMe.ViewModel
                     userhm.Ubicacion = Location;
                     userhm.Celular = Phone;
                     int suscces = await App.Database.SaveUser(userhm);
-                    await Application.Current.MainPage.Navigation.PopAsync();
                     if (suscces > 0)
                     {
                         IsRuning = false;
                         await Application.Current.MainPage.DisplayAlert(
                         "Alerta",
-                        "Lets Goo!!!",
+                        "Registro Exitoso 😎",
                         "ok");
                     }
+                    await Application.Current.MainPage.Navigation.PopAsync();
                 }
                 catch (Exception e)
                 {
@@ -216,15 +216,15 @@ namespace HireMe.ViewModel
                     userworker.Id_userhm = App.Database.getUserId(Mail);
                     userworker.profesion = Profession;
                     int success = await App.Database.SaveUserWorker(userworker);
-                    await Application.Current.MainPage.Navigation.PopAsync();
                     if (success > 0)
                     {
                         IsRuning = false;
                         await Application.Current.MainPage.DisplayAlert(
                         "Alerta",
-                        "Lets Goo!!!2",
+                        "Registro exitoso 🔥",
                         "ok");
                     }
+                    await Application.Current.MainPage.Navigation.PopAsync();
                 }
                 catch (Exception r)
                 {

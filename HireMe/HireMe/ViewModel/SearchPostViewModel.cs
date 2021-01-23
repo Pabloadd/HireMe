@@ -15,6 +15,8 @@ namespace HireMe.ViewModel
         public SearchPostViewModel(UsersHm login_user)
         {
             this.login_user = login_user;
+            IsEnabled = true;
+            IsRunning = false;
             this.LoadListPosts();
         }
         #endregion
@@ -35,16 +37,34 @@ namespace HireMe.ViewModel
         public bool IsRefreshingPosts
         {
             get { return isRefreshingPosts; }
-            set { SetValue(ref isRefreshingPosts, value); }
+            set 
+            { 
+                SetValue(ref isRefreshingPosts, value);
+                if (IsRefreshingPosts)
+                {
+                    LoadListPosts();
+                    IsRefreshingPosts = false;
+                }
+            }
         }
-
-        
+        public bool IsEnabled 
+        {
+            get { return isEnabled; }
+            set { SetValue(ref isEnabled, value); } 
+        }
+        public bool IsRunning 
+        {
+            get { return isRunning; }
+            set { SetValue(ref isRunning, value); } 
+        }
         #endregion
 
         #region Attributies
         private string entryPostUser;
         private List<PostUsers> listPosts;
         private bool isRefreshingPosts;
+        private bool isEnabled;
+        private bool isRunning;
 
         private UsersHm login_user;
         #endregion
@@ -62,9 +82,13 @@ namespace HireMe.ViewModel
         #region Methods
         public async void SendPostMethod()
         {
+            IsEnabled = false;
+            IsRunning = true;
             //codigo para enviar los datos del post a la BD
             if (string.IsNullOrEmpty(this.EntryPostUser))
             {
+                IsEnabled = true;
+                IsRunning = false;
                 await Application.Current.MainPage.DisplayAlert(
                         "Error",
                         "La descripcion de la publicacion esta vacia!",
@@ -74,6 +98,8 @@ namespace HireMe.ViewModel
             PostUsers post = new PostUsers();
             if (this.login_user == null)
             {
+                IsEnabled = true;
+                IsRunning = false;
                 await Application.Current.MainPage.DisplayAlert(
                         "Error",
                         "login user null",
@@ -90,6 +116,8 @@ namespace HireMe.ViewModel
                 var result = await App.Database.SavePostUser(post);
                 if (result > 0)
                 {
+                    IsEnabled = true;
+                    IsRunning = false;
                     this.EntryPostUser = string.Empty;
                     await Application.Current.MainPage.DisplayAlert(
                         "Notificacion",
@@ -100,6 +128,8 @@ namespace HireMe.ViewModel
             }
             catch (Exception e)
             {
+                IsEnabled = true;
+                IsRunning = false;
                 await Application.Current.MainPage.DisplayAlert(
                         "Error",
                         "Algio salio Mal en la publicacion. " + e.Message,
@@ -110,12 +140,10 @@ namespace HireMe.ViewModel
 
         public async void LoadListPosts()
         {
-            
+            IsRunning = true;
             try
             {
-                IsRefreshingPosts = true;
                 this.ListPosts = App.Database.GetPosts().Result;
-                IsRefreshingPosts = false;
             }
             catch (Exception e)
             {
@@ -124,7 +152,7 @@ namespace HireMe.ViewModel
                     "Algio salio mal al cargar la lista. " + e.Message,
                     "Aceptar");
             }
-            
+            IsRunning = false;
         }
         #endregion
     }

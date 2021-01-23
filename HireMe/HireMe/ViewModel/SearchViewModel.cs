@@ -14,12 +14,14 @@ namespace HireMe.ViewModel
         #region Constructors
         public SearchViewModel(UsersHm login_user)
         {
+            IsRunning = false;
             this.login_user = login_user;
             LoadListUsers();
         }
 
         public SearchViewModel(string login_user_mail)
         {
+            IsRunning = false;
             ConsultUser(login_user_mail);
             LoadListUsers();
         } 
@@ -31,6 +33,7 @@ namespace HireMe.ViewModel
         private string filter;
         private List<SearchItemViewModel> listUsers;
         private bool isRefreshing;
+        private bool isRunning;
         #endregion
 
         #region Properties
@@ -39,13 +42,19 @@ namespace HireMe.ViewModel
             get { return listUsers; }
             set { SetValue(ref listUsers, value); }
         }
-
         public bool IsRefreshing
         {
             get { return isRefreshing; }
-            set { SetValue(ref isRefreshing, value); }
+            set 
+            { 
+                SetValue(ref isRefreshing, value);
+                if (IsRefreshing)
+                {
+                    LoadListUsers();
+                    IsRefreshing = false;   
+                }
+            }
         }
-
         public string Filter
         {
             get { return filter; }
@@ -54,6 +63,11 @@ namespace HireMe.ViewModel
                 SetValue(ref filter, value);
                 SearchProf();
             }
+        }
+        public bool IsRunning 
+        {
+            get { return isRunning; }
+            set { SetValue(ref isRunning, value); } 
         }
         #endregion
 
@@ -78,9 +92,9 @@ namespace HireMe.ViewModel
         #region Methods
         public void LoadListUsers()
         {
-            IsRefreshing = true;
+            IsRunning = true;
             ListUser = App.Database.GetUsersWorkers();
-            IsRefreshing = false;
+            IsRunning = false;
         }
         public async void SearchsPostsMethod()
         {
@@ -94,6 +108,7 @@ namespace HireMe.ViewModel
              * This method is for list users through the filter, 
              * using the SearchCommand where the people write a profession
              */
+            IsRunning = true;
             if (string.IsNullOrEmpty(this.Filter))
             {
                 LoadListUsers();
@@ -102,9 +117,7 @@ namespace HireMe.ViewModel
             {
                 try
                 {
-                    IsRefreshing = true;
                     this.ListUser = App.Database.GetUsersWorkersFilter(Filter);
-                    IsRefreshing = false;
                 }
                 catch (System.Exception e)
                 {
@@ -115,6 +128,7 @@ namespace HireMe.ViewModel
                     return;
                 }
             }
+            IsRunning = false;  
         }
         public void ConsultUser(string login_user_mail)
         {

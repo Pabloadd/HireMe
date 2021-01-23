@@ -26,7 +26,11 @@
                     VerticalOptions="Center"
                     HorizontalOptions="FillAndExpand"/>
             </StackLayout>
-
+            <ActivityIndicator
+                IsRunning="{Binding IsRunning,Mode=TwoWay}"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand">
+            </ActivityIndicator>
             <ScrollView>
                 <ListView
                     ItemsSource="{Binding ListUser}"

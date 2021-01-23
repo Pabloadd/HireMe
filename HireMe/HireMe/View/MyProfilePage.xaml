@@ -7,7 +7,7 @@
     <ContentPage.Content>
         <StackLayout
             BindingContext="{Binding MyProfile}"
-            Margin="15,10,15,0">
+            Margin="15,20,15,0">
             <StackLayout
                 Orientation="Horizontal"
                 Margin="0">
@@ -23,7 +23,11 @@
                     HorizontalOptions="End"
                     Command="{Binding EditCommand}"/>
             </StackLayout>
-
+            <ActivityIndicator
+                IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+            </ActivityIndicator>
             <Grid RowSpacing="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -44,7 +48,7 @@
                     Grid.Column="1"
                     Text="{Binding Name,Mode=TwoWay}"
                     IsEnabled="{Binding IsEnabled}"/>
-                
+
                 <Label
                     Text="Apellido"
                     TextColor="Black"
@@ -58,9 +62,27 @@
                     Placeholder="Apellido"
                     Grid.Row="1"
                     Grid.Column="1"
+                    Keyboard="Text"
                     Text="{Binding LastName,Mode=TwoWay}"
                     IsEnabled="{Binding IsEnabled}"/>
-                
+
+                <Label
+                    Text="Correo electronico"
+                    TextColor="Black"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Row="2"
+                    Grid.Column="0"/>
+                <Entry
+                    Placeholder="correo@mail.com"
+                    Keyboard="Email"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="{Binding Mail,Mode=TwoWay}"
+                    IsEnabled="{Binding IsEnabled}"/>
+
                 <Label
                     Text="Contraseña"
                     TextColor="Black"
@@ -68,16 +90,16 @@
                     FontAttributes="Bold"
                     VerticalOptions="Center"
                     HorizontalOptions="FillAndExpand"
-                    Grid.Row="2"
+                    Grid.Row="3"
                     Grid.Column="0"/>
                 <Entry
                     IsPassword="True"
                     Placeholder="******"
-                    Grid.Row="2"
+                    Grid.Row="3"
                     Grid.Column="1"
                     Text="{Binding Password,Mode=TwoWay}"
                     IsEnabled="{Binding IsEnabled}"/>
-                
+
                 <Label
                     Text="Ubicacion"
                     TextColor="Black"
@@ -85,15 +107,16 @@
                     FontAttributes="Bold"
                     VerticalOptions="Center"
                     HorizontalOptions="FillAndExpand"
-                    Grid.Row="3"
+                    Grid.Row="4"
                     Grid.Column="0"/>
                 <Entry
-                    Placeholder="Ubicacion"
-                    Grid.Row="3"
+                    Placeholder="Panama"
+                    Grid.Row="4"
                     Grid.Column="1"
+                    Keyboard="Text"
                     Text="{Binding Location,Mode=TwoWay}"
                     IsEnabled="{Binding IsEnabled}"/>
-                
+
                 <Label
                     Text="Celular"
                     TextColor="Black"
@@ -101,16 +124,16 @@
                     FontAttributes="Bold"
                     VerticalOptions="Center"
                     HorizontalOptions="FillAndExpand"
-                    Grid.Row="4"
+                    Grid.Row="5"
                     Grid.Column="0"/>
                 <Entry
                     Placeholder="61200000"
                     Keyboard="Telephone"
-                    Grid.Row="4"
+                    Grid.Row="5"
                     Grid.Column="1"
                     Text="{Binding Phone,Mode=TwoWay}"
                     IsEnabled="{Binding IsEnabled}"/>
-                
+
                 <Label
                     Text="Profesion"
                     TextColor="Black"
@@ -118,18 +141,27 @@
                     FontAttributes="Bold"
                     VerticalOptions="Center"
                     HorizontalOptions="FillAndExpand"
-                    Grid.Row="5"
+                    Grid.Row="6"
                     Grid.Column="0"
                     IsVisible="{Binding IsVisible}"/>
                 <Entry
                     Placeholder="Jardinero, Ing. Electrico..."
                     Keyboard="Text"
-                    Grid.Row="5"
+                    Grid.Row="6"
                     Grid.Column="1"
                     Text="{Binding Profesion,Mode=TwoWay}"
                     IsEnabled="{Binding IsEnabled}"
                     IsVisible="{Binding IsVisible}"/>
+                <Button
+                    Grid.Row="7"
+                    Grid.ColumnSpan="2"
+                    TextColor="Black"
+                    FontSize="Medium"
+                    Text="Enviar"
+                    Command="{Binding SendBtn}"
+                    IsEnabled="{Binding IsEnabled}"/>
             </Grid>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

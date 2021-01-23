@@ -65,9 +65,12 @@
                 </StackLayout>
 
                 <ActivityIndicator
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
                     IsRunning="{Binding IsRuning, Mode=TwoWay}">
 
                 </ActivityIndicator>
+                
                 <Label
                     Margin="10,0"
                     Text="Olvido su contrasena?"

@@ -24,8 +24,14 @@
                 Margin="10"
                 Text="Enviar"
                 Command="{Binding SendPostUser}"
+                IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                 HorizontalOptions="FillAndExpand"/>
-            <ScrollView>
+            <ActivityIndicator
+                IsRunning="{Binding IsRunning,Mode=TwoWay}"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand">
+            </ActivityIndicator>
+            <ScrollView Margin="0,0,0,10">
                 <ListView
                     ItemsSource="{Binding ListPosts}"
                     IsRefreshing="{Binding IsRefreshingPosts, Mode=TwoWay}"

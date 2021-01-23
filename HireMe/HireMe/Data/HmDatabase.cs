@@ -43,7 +43,6 @@ namespace HireMe.Data
             var e = _database.QueryAsync<UsersHm>("Select Id_userhm from UsersHm where Mail_user = ?", mail).Result;
             b =  e.Select(i => i.Id_userhm).First();
             return  b;
-            //return db.Query<Valuation> ("select * from Valuation where StockId = ?", stock.Id);
         }
 
         //metodo para obtener los datos de un usurio
@@ -83,6 +82,13 @@ namespace HireMe.Data
                 "Where UsersHm.Id_userhm = UsersWorkers.Id_userhm").Result;
             /*List<UsersWorkerModel> result = list.Result;*/
             return list;
+        }
+
+        public Task<UsersWorkers> GetUserWorker(int id_user)
+        {
+            return _database.Table<UsersWorkers>()
+                .Where(w => w.Id_userhm == id_user)
+                .FirstOrDefaultAsync();
         }
 
         public List<SearchItemViewModel> GetUsersWorkersFilter(string filter)
