@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HireMe.View.PerfilUserPage"
              Title="Informacion"
-    BindingContext="{Binding Main, Source={StaticResource Locator}}">
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
         <StackLayout BindingContext="{Binding Perfiluser}">
             <Label
                 Text="Perfil"
+                TextColor="{DynamicResource PrimaryTextColor}"
                 FontSize="Header"
                 HorizontalOptions="CenterAndExpand"/>
             <Grid
@@ -19,7 +21,7 @@
                 
                 <Label
                     Text="Nombre"
-                    TextColor="Black"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     Grid.Row="0"
                     Grid.Column="0"
                     VerticalOptions="Center"
@@ -30,22 +32,21 @@
                     Orientation="Horizontal"
                     Grid.Row="0"
                     Grid.Column="1"
-                    HorizontalOptions="Start">
+                    HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand">
                     <Label
                         Text="{Binding Perfiluser.Nombre_c}"
+                        TextColor="{DynamicResource PrimaryTextColor}"
                         FontSize="Medium"
-                        TextColor="Black"
-                        Margin="0,0,5,0"
-                        VerticalOptions="Center"/>
+                        Margin="0,0,5,0"/>
                     <Label
                         Text="{Binding Perfiluser.Apellido_user}"
-                        TextColor="Black"
-                        FontSize="Medium"
-                        VerticalOptions="Center"/>
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        FontSize="Medium"/>
                 </StackLayout>
                 <Label
                     Text="Mail"
-                    TextColor="Black"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     Grid.Row="1"
                     Grid.Column="0"
                     VerticalOptions="Center"
@@ -55,13 +56,13 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Text="{Binding Perfiluser.Mail_user}" 
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     FontSize="Medium"
-                    TextColor="Black"
                     HorizontalOptions="Center"/>
                 
                 <Label
                     Text="Celular"
-                    TextColor="Black"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     Grid.Row="2"
                     Grid.Column="0"
                     VerticalOptions="Center"
@@ -71,13 +72,13 @@
                     Grid.Row="2"
                     Grid.Column="1"
                     Text="{Binding Perfiluser.Celular}" 
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     FontSize="Medium"
-                    TextColor="Black"
                     HorizontalOptions="Center"/>
                 
                 <Label
                     Text="Residencia"
-                    TextColor="Black"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     Grid.Row="3"
                     Grid.Column="0"
                     VerticalOptions="Center"
@@ -87,14 +88,14 @@
                     Grid.Row="3"
                     Grid.Column="1"
                     Text="{Binding Perfiluser.Ubicacion}" 
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     FontSize="Medium"
-                    TextColor="Black"
                     HorizontalOptions="Center"/>
                 <!-- colocar sugerencia al ir escribiendo el lugar de residencia -->
 
                 <Label
                     Text="Profesiones"
-                    TextColor="Black"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     Grid.Row="4"
                     Grid.Column="0"
                     VerticalOptions="Center" 
@@ -104,17 +105,9 @@
                     Grid.Row="4"
                     Grid.Column="1"
                     Text="{Binding Perfiluser.profesion}" 
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     FontSize="Medium"
-                    TextColor="Black"
                     HorizontalOptions="Center"/> 
-                
-                <!--
-                <Button
-                        Grid.Row="5"
-                        Grid.ColumnSpan="2"
-                        Command="{Binding SendCommand}"
-                        Text="Actualizar"/>
-                -->
             </Grid>
 
         </StackLayout>

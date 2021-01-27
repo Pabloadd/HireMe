@@ -10,6 +10,7 @@ namespace HireMe.ViewModel
     using Models;
     using Xamarin.Forms;
     using Helpers;
+    using Themes;
     /*
      * USUARIOS REGISTRADOS
      * cliente
@@ -30,6 +31,7 @@ namespace HireMe.ViewModel
         {
             this.IsSesion = true;
             this.IsEnable = true;
+            ThemeApp();
             //this.Mail = "pablo@gmail.com";
             //operacionDeleteTables();
         }
@@ -163,7 +165,29 @@ namespace HireMe.ViewModel
             App.Database.BorrarDataDB();
         }
 
-       
+        private void ThemeApp()
+        {
+            ICollection<ResourceDictionary> dictionaries = Application.Current.Resources.MergedDictionaries;
+
+            if (dictionaries != null)
+            {
+                dictionaries.Clear();
+                OSAppTheme currentTheme = Application.Current.RequestedTheme;
+                if (currentTheme == OSAppTheme.Dark)
+                {
+                    dictionaries.Add(new DarkTheme());
+                }
+                else if (currentTheme == OSAppTheme.Light)
+                {
+                    dictionaries.Add(new LightTheme());
+                }
+                else if (currentTheme == OSAppTheme.Unspecified)
+                {
+                    dictionaries.Add(new LightTheme());
+                }
+            }
+        }
+
         #endregion
     }
 }

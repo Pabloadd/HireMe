@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HireMe.View.SearchPage"
              Title="Buscar Cliente"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
         <StackLayout 
             Margin="10,20"
@@ -11,18 +12,27 @@
             <StackLayout>
                 <SearchBar
                     Text="{Binding Filter, Mode=TwoWay}"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     Placeholder="Ingresa una profesion"
                     SearchCommand="{Binding SearchCommand}"/>
                 <StackLayout Orientation="Horizontal">
-                    <Button Text="Mecanico" FontSize="Small"/>
-                    <Button Text="Electricista" FontSize="Small"/>
+                    <Button 
+                        Text="Mecanico"
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        BackgroundColor="{DynamicResource SecondaryColor}"
+                        FontSize="Small"/>
+                    <Button 
+                        Text="Electricista" 
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        BackgroundColor="{DynamicResource SecondaryColor}"
+                        FontSize="Small"/>
                 </StackLayout>
                 <Button 
                     Command="{Binding SearchsPostsBtn}"
                     Text="Publicaciones" 
                     FontSize="Small"
-                    TextColor="Black"
-                    BackgroundColor="AliceBlue"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     VerticalOptions="Center"
                     HorizontalOptions="FillAndExpand"/>
             </StackLayout>
@@ -62,11 +72,11 @@
                                             VerticalOptions="Center">
                                             <Label 
                                                 Text="{Binding Nombre_c}"
-                                                TextColor="Black"
+                                                TextColor="{DynamicResource PrimaryTextColor}"
                                                 FontSize="Medium"/>
                                             <Label 
                                                 Text="{Binding profesion}"
-                                                TextColor="Black"
+                                                TextColor="{DynamicResource SecondaryTextColor}"
                                                 FontSize="Body"/>
                                         </StackLayout>
                                         <!-- en la columna 1 se puede agregar un contenido-->

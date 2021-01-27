@@ -3,13 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Title="Iniciar Sesion"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             x:Class="HireMe.View.LoginPage">
+             x:Class="HireMe.View.LoginPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
         <ScrollView
             BindingContext="{Binding Login}">
             <StackLayout>
                 <Label 
                     Text="HireMe"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     FontSize="Header"
                     HorizontalOptions="CenterAndExpand"
                     Padding="20,0,0,10"/>
@@ -26,39 +28,54 @@
                         VerticalOptions="Center"
                         HorizontalOptions="Center"
                         FontSize="Medium"
-                        TextColor="black"
-                        Text="Mail"/>
-                    <Entry 
+                        Text="Mail"
+                        TextColor="{DynamicResource PrimaryTextColor}"/>
+                    <Frame
                         Grid.Row="0"
                         Grid.Column="1"
-                        Keyboard="Email"
-                        Text="{Binding Mail, Mode=TwoWay}"
-                        FontSize="Medium"
-                        TextColor="black"
-                        Placeholder="ejemplo@mail.com" />
+                        BackgroundColor="{DynamicResource PrimaryColor}"
+                        Padding="4"
+                        CornerRadius="8">
+                        <Entry
+                            Keyboard="Email"
+                            Text="{Binding Mail, Mode=TwoWay}"
+                            TextColor="{DynamicResource PrimaryTextColor}"
+                            FontSize="Medium"
+                            Placeholder="ejemplo@mail.com" />
+                    </Frame>
+                    
                     <Label
                         Text="Contrasena"
+                        TextColor="{DynamicResource PrimaryTextColor}"
                         VerticalOptions="Center"
                         FontSize="Medium"
                         HorizontalOptions="Center"
-                        TextColor="black"
                         Grid.Row="1"
                         Grid.Column="0"/>
-                    <Entry 
+                    <Frame
                         Grid.Row="1"
                         Grid.Column="1"
-                        FontSize="Medium"
-                        TextColor="black"
-                        IsPassword="True"
-                        Text="{Binding Password, Mode=TwoWay}"
-                        Placeholder="*******" />
+                        BackgroundColor="{DynamicResource PrimaryColor}"
+                        Padding="4"
+                        CornerRadius="8">
+                        <Entry 
+                            FontSize="Medium"
+                            IsPassword="True"
+                            Text="{Binding Password, Mode=TwoWay}"
+                            TextColor="{DynamicResource PrimaryTextColor}"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Placeholder="*******" />
+                    </Frame>
+                    
                 </Grid>
 
                 <StackLayout Orientation="Horizontal">
                     <Label 
+                        FontSize="Medium"
                         VerticalOptions="Center"
                         Margin="10,0"
-                        Text="Mantener Sesion"/>
+                        Text="Mantener Sesion"
+                        TextColor="{DynamicResource PrimaryTextColor}"/>
                     <Switch
                         HorizontalOptions="EndAndExpand"
                         IsToggled="{Binding IsSesion, Mode=TwoWay}"/>
@@ -68,21 +85,26 @@
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
                     IsRunning="{Binding IsRuning, Mode=TwoWay}">
-
                 </ActivityIndicator>
                 
                 <Label
                     Margin="10,0"
                     Text="Olvido su contrasena?"
-                    TextColor="DarkBlue"/>
+                    TextColor="{DynamicResource PrimaryTextColor}"
+                    FontSize="Medium"
+                    />
                 <StackLayout 
                     Margin="10,0">
                     <Button 
+                        BackgroundColor="{DynamicResource PrimaryColor}"
+                        TextColor="{DynamicResource PrimaryTextColor}"
                         HorizontalOptions="FillAndExpand"
                         Command="{Binding LoginCommand}"
                         IsEnabled="{Binding IsEnable, Mode=TwoWay}"
                         Text="Entrar" />
-                    <Button 
+                    <Button
+                        BackgroundColor="{DynamicResource SecondaryColor}"
+                        TextColor="{DynamicResource PrimaryTextColor}"
                         HorizontalOptions="FillAndExpand"
                         Text="Registrarse"
                         Command="{Binding RegisterCommand, Mode=TwoWay}"/>

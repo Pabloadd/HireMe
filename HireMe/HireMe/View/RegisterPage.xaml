@@ -3,28 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HireMe.View.RegisterPage"
              Title="Registrarse"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
         <ScrollView
             BindingContext="{Binding Register}">
             <StackLayout>
                 <Label
                     Text="Registro"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     Margin="0,10"
                     FontSize="Medium"
-                    TextColor="Black"
                     HorizontalOptions="Center"/>
                 <StackLayout
                     Margin="20,10"
                     Orientation="Horizontal">
                     <Label
                         Text="Perfil"
-                        TextColor="Black"
+                        TextColor="{DynamicResource PrimaryTextColor}"
                         VerticalOptions="Center"
                         Margin="0,0,20,0"/>
                     <Picker
                         Title="Seleccione perfil"
                         SelectedItem="{Binding ProfileUser}"
+                        TextColor="{DynamicResource PrimaryTextColor}"
                         HorizontalOptions="FillAndExpand">
                         <Picker.Items>
                             <x:String>Cliente</x:String>
@@ -41,7 +43,7 @@
 
                     <Label
                         Text="Nombre"
-                        TextColor="Black"
+                        TextColor="{DynamicResource PrimaryTextColor}"
                         Grid.Row="0"
                         Grid.Column="0"
                         VerticalOptions="Center"/>
@@ -49,11 +51,13 @@
                         Grid.Row="0"
                         Grid.Column="1"
                         Text="{Binding Name, Mode=TwoWay}"
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        BackgroundColor="{DynamicResource SecondaryColor}"
                         Keyboard="Text" FontSize="Medium"
                         />
                     <Label
                         Text="Apellido"
-                        TextColor="Black"
+                        TextColor="{DynamicResource PrimaryTextColor}"
                         Grid.Row="1"
                         Grid.Column="0"
                         VerticalOptions="Center"/>
@@ -61,10 +65,13 @@
                         Grid.Row="1"
                         Grid.Column="1"
                         Keyboard="Text"
-                        Text="{Binding LastName, Mode=TwoWay}" FontSize="Medium"/>
+                        Text="{Binding LastName, Mode=TwoWay}" 
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        BackgroundColor="{DynamicResource SecondaryColor}"
+                        FontSize="Medium"/>
                     <Label
                         Text="Mail"
-                        TextColor="Black"
+                        TextColor="{DynamicResource PrimaryTextColor}"
                         Grid.Row="2"
                         Grid.Column="0"
                         VerticalOptions="Center"/>
@@ -73,10 +80,13 @@
                         Grid.Column="1"
                         Keyboard="Email"
                         Placeholder="ejemplo@mail.com"
-                        Text="{Binding Mail, Mode=TwoWay}" FontSize="Medium"/>
+                        Text="{Binding Mail, Mode=TwoWay}" 
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        BackgroundColor="{DynamicResource SecondaryColor}"
+                        FontSize="Medium"/>
                     <Label
                         Text="Contraseña"
-                        TextColor="Black"
+                        TextColor="{DynamicResource PrimaryTextColor}"
                         Grid.Row="3"
                         Grid.Column="0"
                         VerticalOptions="Center"/>
@@ -85,10 +95,13 @@
                         Grid.Column="1"
                         Placeholder="123456"
                         IsPassword="True"
-                        Text="{Binding Password, Mode=TwoWay}" FontSize="Medium"/>
+                        Text="{Binding Password, Mode=TwoWay}" 
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        BackgroundColor="{DynamicResource SecondaryColor}"
+                        FontSize="Medium"/>
                     <Label
                         Text="Celular"
-                        TextColor="Black"
+                        TextColor="{DynamicResource PrimaryTextColor}"
                         Grid.Row="4"
                         Grid.Column="0"
                         VerticalOptions="Center"/>
@@ -97,31 +110,36 @@
                         Grid.Column="1"
                         Keyboard="Telephone"
                         Placeholder="60000000"
-                        Text="{Binding Phone, Mode=TwoWay}" FontSize="Medium"/>
+                        Text="{Binding Phone, Mode=TwoWay}" 
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        BackgroundColor="{DynamicResource SecondaryColor}"
+                        FontSize="Medium"/>
                     <Label
                         Text="Residencia"
-                        TextColor="Black"
+                        TextColor="{DynamicResource PrimaryTextColor}"
                         Grid.Row="5"
                         Grid.Column="0"
                         VerticalOptions="Center"/>
                     <Entry
-                    
                         Grid.Row="5"
                         Grid.Column="1"
                         Keyboard="Text"
                         Placeholder="Distrito, provincia, Pais."
                         Text="{Binding Location, Mode=TwoWay}" 
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        BackgroundColor="{DynamicResource SecondaryColor}"
                         FontSize="Medium"/>
                     <!-- colocar sugerencia al ir escribiendo el lugar de residencia -->
                    
                     <SearchBar 
                         Text="{Binding FindAddress, Mode=TwoWay}"
+                        TextColor="{DynamicResource PrimaryTextColor}"
                         SearchCommand="{Binding SearchCommand}"
                         Grid.Row="6"
                         Grid.Column="1"/>
                     <Label
                         Text="Profesiones"
-                        TextColor="Black"
+                        TextColor="{DynamicResource PrimaryTextColor}"
                         Grid.Row="7"
                         Grid.Column="0"
                         IsVisible="{Binding IsVisibleProf, Mode=TwoWay}"
@@ -132,13 +150,18 @@
                         Keyboard="Text"
                         IsVisible="{Binding IsVisibleProf, Mode=TwoWay}"
                         Placeholder="Electrico, Tecnico en aires..."
-                        Text="{Binding Profession, Mode=TwoWay}" FontSize="Medium"/>
+                        Text="{Binding Profession, Mode=TwoWay}" 
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        BackgroundColor="{DynamicResource SecondaryColor}"
+                        FontSize="Medium"/>
                     <Button
                         Grid.Row="8"
                         Grid.ColumnSpan="2"
                         IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                         Command="{Binding SendCommand}"
-                        Text="Enviar"/>
+                        BackgroundColor="{DynamicResource PrimaryColor}"
+                        Text="Enviar"
+                        TextColor="{DynamicResource PrimaryTextColor}"/>
                 </Grid>
                 <ActivityIndicator
                         VerticalOptions="CenterAndExpand"

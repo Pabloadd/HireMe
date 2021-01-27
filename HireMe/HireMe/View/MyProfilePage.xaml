@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Title="Profile Page"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             x:Class="HireMe.View.MyProfilePage">
+             x:Class="HireMe.View.MyProfilePage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
         <StackLayout
             BindingContext="{Binding MyProfile}"
@@ -17,8 +18,8 @@
                 
                 <Button
                     Text="Editar Perfil"
-                    BackgroundColor="Black"
-                    TextColor="WhiteSmoke"
+                    BackgroundColor="{DynamicResource SecondaryColor}"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     CornerRadius="8"
                     HorizontalOptions="End"
                     Command="{Binding EditCommand}"/>
@@ -35,7 +36,7 @@
                 </Grid.ColumnDefinitions>
                 <Label
                     Text="Nombre"
-                    TextColor="Black"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     FontSize="Medium"
                     FontAttributes="Bold"
                     VerticalOptions="Center"
@@ -47,11 +48,13 @@
                     Grid.Row="0"
                     Grid.Column="1"
                     Text="{Binding Name,Mode=TwoWay}"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     IsEnabled="{Binding IsEnabled}"/>
 
                 <Label
                     Text="Apellido"
-                    TextColor="Black"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     FontSize="Medium"
                     FontAttributes="Bold"
                     VerticalOptions="Center"
@@ -64,11 +67,13 @@
                     Grid.Column="1"
                     Keyboard="Text"
                     Text="{Binding LastName,Mode=TwoWay}"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     IsEnabled="{Binding IsEnabled}"/>
 
                 <Label
                     Text="Correo electronico"
-                    TextColor="Black"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     FontSize="Medium"
                     FontAttributes="Bold"
                     VerticalOptions="Center"
@@ -81,11 +86,13 @@
                     Grid.Row="2"
                     Grid.Column="1"
                     Text="{Binding Mail,Mode=TwoWay}"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     IsEnabled="{Binding IsEnabled}"/>
 
                 <Label
                     Text="Contraseña"
-                    TextColor="Black"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     FontSize="Medium"
                     FontAttributes="Bold"
                     VerticalOptions="Center"
@@ -98,11 +105,13 @@
                     Grid.Row="3"
                     Grid.Column="1"
                     Text="{Binding Password,Mode=TwoWay}"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     IsEnabled="{Binding IsEnabled}"/>
 
                 <Label
                     Text="Ubicacion"
-                    TextColor="Black"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     FontSize="Medium"
                     FontAttributes="Bold"
                     VerticalOptions="Center"
@@ -115,11 +124,13 @@
                     Grid.Column="1"
                     Keyboard="Text"
                     Text="{Binding Location,Mode=TwoWay}"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     IsEnabled="{Binding IsEnabled}"/>
 
                 <Label
                     Text="Celular"
-                    TextColor="Black"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     FontSize="Medium"
                     FontAttributes="Bold"
                     VerticalOptions="Center"
@@ -132,11 +143,13 @@
                     Grid.Row="5"
                     Grid.Column="1"
                     Text="{Binding Phone,Mode=TwoWay}"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     IsEnabled="{Binding IsEnabled}"/>
 
                 <Label
                     Text="Profesion"
-                    TextColor="Black"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     FontSize="Medium"
                     FontAttributes="Bold"
                     VerticalOptions="Center"
@@ -150,12 +163,15 @@
                     Grid.Row="6"
                     Grid.Column="1"
                     Text="{Binding Profesion,Mode=TwoWay}"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     IsEnabled="{Binding IsEnabled}"
                     IsVisible="{Binding IsVisible}"/>
                 <Button
                     Grid.Row="7"
                     Grid.ColumnSpan="2"
-                    TextColor="Black"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     FontSize="Medium"
                     Text="Enviar"
                     Command="{Binding SendBtn}"

@@ -1,8 +1,11 @@
 ﻿
 namespace HireMe.ViewModel
 {
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using Models;
+    using Themes;
+    using Xamarin.Forms;
+
     class MainViewModel
     {
         #region Constructors
@@ -11,6 +14,7 @@ namespace HireMe.ViewModel
             instance = this;
             this.Login = new LoginViewModel();
             LoadMenu();
+            //ThemeApp();
         }
         #endregion
 
@@ -68,6 +72,28 @@ namespace HireMe.ViewModel
                 Title = "Cerrar Sesion"
             });
         }
+        /*private void ThemeApp()
+        {
+            ICollection<ResourceDictionary> dictionaries = Application.Current.Resources.MergedDictionaries;
+
+            if (dictionaries != null)
+            {
+                dictionaries.Clear();
+                OSAppTheme currentTheme = Application.Current.RequestedTheme;
+                if (currentTheme == OSAppTheme.Dark)
+                {
+                    dictionaries.Add(new DarkTheme());
+                }
+                else if (currentTheme == OSAppTheme.Light)
+                {
+                    dictionaries.Add(new LightTheme());
+                }
+                else if(currentTheme == OSAppTheme.Unspecified)
+                {
+                    dictionaries.Add(new LightTheme());
+                }
+            }
+        }*/
         #endregion
 
     }

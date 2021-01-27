@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Title="Publicaciones"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             x:Class="HireMe.View.SearchPostPage">
+             x:Class="HireMe.View.SearchPostPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
 
         <StackLayout
@@ -11,18 +12,22 @@
             <Label
                 Margin="20,20,0,0"
                 Text="¿Qué desea publicar?"
-                TextColor="Black"
+                TextColor="{DynamicResource PrimaryTextColor}"
                 FontSize="Title"
                 VerticalOptions="Start" 
                 HorizontalOptions="StartAndExpand" />
             <Entry
                 Margin="10"
+                BackgroundColor="{DynamicResource PrimaryColor}"
+                TextColor="{DynamicResource PrimaryTextColor}"
                 Text="{Binding EntryPostUser, Mode=TwoWay}"
                 VerticalOptions="Center"
                 HorizontalOptions="FillAndExpand"/>
             <Button
                 Margin="10"
                 Text="Enviar"
+                BackgroundColor="{DynamicResource PrimaryColor}"
+                TextColor="{DynamicResource PrimaryTextColor}"
                 Command="{Binding SendPostUser}"
                 IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                 HorizontalOptions="FillAndExpand"/>
@@ -41,23 +46,29 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout
-                                    VerticalOptions="Start"
-                                    Margin="20,5,20,5">
-                                    <Label
-                                        Text="{Binding UserName}"
-                                        TextColor="Black"
-                                        FontSize="Medium" 
-                                        FontAttributes="Bold"/>
-                                    <Label
-                                        Text="{Binding fechaPost}"
-                                        TextColor="Gray"
-                                        FontSize="Micro"/>
-                                    <Label
-                                        Text="{Binding PostText}"
-                                        TextColor="Black"
-                                        FontSize="Body"/>
-                                </StackLayout>
+                                <Frame
+                                    Margin="5"
+                                    CornerRadius="20"
+                                    HasShadow="True">
+                                    <StackLayout
+                                        VerticalOptions="Start"
+                                        Margin="20,5,20,5"
+                                        BackgroundColor="White">
+                                        <Label
+                                            Text="{Binding UserName}"
+                                            TextColor="{DynamicResource PrimaryTextColor}"
+                                            FontSize="Medium" 
+                                            FontAttributes="Bold"/>
+                                        <Label
+                                            Text="{Binding fechaPost}"
+                                            TextColor="{DynamicResource SecondaryTextColor}"
+                                            FontSize="Micro"/>
+                                        <Label
+                                            Text="{Binding PostText}"
+                                            TextColor="{DynamicResource PrimaryTextColor}"
+                                            FontSize="Body"/>
+                                    </StackLayout>
+                                </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
