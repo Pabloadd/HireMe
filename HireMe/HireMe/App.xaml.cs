@@ -8,6 +8,8 @@ namespace HireMe
     using Xamarin.Forms;
     using Helpers;
     using ViewModel;
+    using System.Collections.Generic;
+    using HireMe.Themes;
 
     public partial class App : Application
     {
@@ -33,6 +35,7 @@ namespace HireMe
         public App()
         {
             InitializeComponent();
+            ThemeApp();
             if (string.IsNullOrEmpty(Settings.Login_User_Mail))
             {
                 MainPage = new NavigationPage(new LoginPage());
@@ -57,7 +60,29 @@ namespace HireMe
 
         protected override void OnResume()
         {
-        } 
+        }
+        private void ThemeApp()
+        {
+            ICollection<ResourceDictionary> dictionaries = Application.Current.Resources.MergedDictionaries;
+
+            if (dictionaries != null)
+            {
+                dictionaries.Clear();
+                OSAppTheme currentTheme = Application.Current.RequestedTheme;
+                if (currentTheme == OSAppTheme.Dark)
+                {
+                    dictionaries.Add(new DarkTheme());
+                }
+                else if (currentTheme == OSAppTheme.Light)
+                {
+                    dictionaries.Add(new LightTheme());
+                }
+                else if (currentTheme == OSAppTheme.Unspecified)
+                {
+                    dictionaries.Add(new LightTheme());
+                }
+            }
+        }
         #endregion
     }
 }

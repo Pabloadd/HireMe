@@ -6,7 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <infra:InstanceLocator x:Key="Locator"/>
-            <!-- <ResourceDictionary Source="Themes/DarkTheme.xaml"/>  -->
+            <ResourceDictionary Source="Themes/LightTheme.xaml"/> 
         </ResourceDictionary>
 
     </Application.Resources>

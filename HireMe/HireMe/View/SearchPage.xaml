@@ -72,7 +72,7 @@
                                             VerticalOptions="Center">
                                             <Label 
                                                 Text="{Binding Nombre_c}"
-                                                TextColor="{DynamicResource PrimaryTextColor}"
+                                                TextColor="Black"
                                                 FontSize="Medium"/>
                                             <Label 
                                                 Text="{Binding profesion}"

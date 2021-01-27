@@ -56,7 +56,7 @@
                                         BackgroundColor="White">
                                         <Label
                                             Text="{Binding UserName}"
-                                            TextColor="{DynamicResource PrimaryTextColor}"
+                                            TextColor="Black"
                                             FontSize="Medium" 
                                             FontAttributes="Bold"/>
                                         <Label
@@ -65,7 +65,7 @@
                                             FontSize="Micro"/>
                                         <Label
                                             Text="{Binding PostText}"
-                                            TextColor="{DynamicResource PrimaryTextColor}"
+                                            TextColor="Black"
                                             FontSize="Body"/>
                                     </StackLayout>
                                 </Frame>
