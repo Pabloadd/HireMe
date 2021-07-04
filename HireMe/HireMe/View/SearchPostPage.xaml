@@ -54,11 +54,19 @@
                                         VerticalOptions="Start"
                                         Margin="20,5,20,5"
                                         BackgroundColor="White">
-                                        <Label
-                                            Text="{Binding UserName}"
-                                            TextColor="Black"
-                                            FontSize="Medium" 
-                                            FontAttributes="Bold"/>
+                                        <StackLayout
+                                            Orientation="Horizontal">
+                                            <Image
+                                                VerticalOptions="CenterAndExpand"
+                                                Source="ic_account"/>
+
+                                            <Label
+                                                Text="{Binding UserName}"
+                                                TextColor="Black"
+                                                FontSize="Medium" 
+                                                FontAttributes="Bold"/>
+                                        </StackLayout>
+                                        
                                         <Label
                                             Text="{Binding fechaPost}"
                                             TextColor="{DynamicResource SecondaryTextColor}"

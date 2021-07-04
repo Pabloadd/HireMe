@@ -5,29 +5,20 @@
              Title="Informacion"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Select"
+                     Clicked="Handle_Clicked"/>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <StackLayout BindingContext="{Binding Perfiluser}">
-            <Label
-                Text="Perfil"
-                TextColor="{DynamicResource PrimaryTextColor}"
-                FontSize="Header"
-                HorizontalOptions="CenterAndExpand"/>
-            <Grid
-                Margin="20,10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
-                
-                <Label
-                    Text="Nombre"
-                    TextColor="{DynamicResource PrimaryTextColor}"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    VerticalOptions="Center"
-                    HorizontalOptions="CenterAndExpand"
-                    FontSize="Large"
-                    Padding="0,0,0,20"/>
+            <StackLayout
+                    Orientation="Horizontal"
+                Margin="10,20,10,5">
+                <Image
+                    WidthRequest="80"
+                    HeightRequest="80"
+                    Source="ic_account"/>
                 <StackLayout
                     Orientation="Horizontal"
                     Grid.Row="0"
@@ -44,16 +35,26 @@
                         TextColor="{DynamicResource PrimaryTextColor}"
                         FontSize="Medium"/>
                 </StackLayout>
+            </StackLayout>
+            <Grid
+                Margin="10,10,10,0">
+                <Grid.ColumnDefinitions>
+                    
+                    <ColumnDefinition
+                        Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
                 <Label
                     Text="Mail"
                     TextColor="{DynamicResource PrimaryTextColor}"
-                    Grid.Row="1"
+                    Grid.Row="0"
                     Grid.Column="0"
                     VerticalOptions="Center"
                     HorizontalOptions="CenterAndExpand"
                     FontSize="Large"/>
                 <Label
-                    Grid.Row="1"
+                    Grid.Row="0"
                     Grid.Column="1"
                     Text="{Binding Perfiluser.Mail_user}" 
                     TextColor="{DynamicResource PrimaryTextColor}"
@@ -63,13 +64,13 @@
                 <Label
                     Text="Celular"
                     TextColor="{DynamicResource PrimaryTextColor}"
-                    Grid.Row="2"
+                    Grid.Row="1"
                     Grid.Column="0"
                     VerticalOptions="Center"
                     HorizontalOptions="CenterAndExpand"
                     FontSize="Large"/>
                 <Label
-                    Grid.Row="2"
+                    Grid.Row="1"
                     Grid.Column="1"
                     Text="{Binding Perfiluser.Celular}" 
                     TextColor="{DynamicResource PrimaryTextColor}"
@@ -79,30 +80,30 @@
                 <Label
                     Text="Residencia"
                     TextColor="{DynamicResource PrimaryTextColor}"
-                    Grid.Row="3"
+                    Grid.Row="2"
                     Grid.Column="0"
                     VerticalOptions="Center"
                     HorizontalOptions="CenterAndExpand"
                     FontSize="Large"/>
                 <Label
-                    Grid.Row="3"
+                    Grid.Row="2"
                     Grid.Column="1"
                     Text="{Binding Perfiluser.Ubicacion}" 
                     TextColor="{DynamicResource PrimaryTextColor}"
                     FontSize="Medium"
                     HorizontalOptions="Center"/>
-                <!-- colocar sugerencia al ir escribiendo el lugar de residencia -->
 
                 <Label
                     Text="Profesiones"
                     TextColor="{DynamicResource PrimaryTextColor}"
-                    Grid.Row="4"
+                    Grid.Row="3"
                     Grid.Column="0"
                     VerticalOptions="Center" 
                     FontSize="Large"
                     HorizontalOptions="CenterAndExpand"/>
                 <Label
-                    Grid.Row="4"
+                    Grid.Row="3"
+                    Grid.RowSpan="2"
                     Grid.Column="1"
                     Text="{Binding Perfiluser.profesion}" 
                     TextColor="{DynamicResource PrimaryTextColor}"

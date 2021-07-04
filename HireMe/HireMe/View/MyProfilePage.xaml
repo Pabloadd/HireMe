@@ -5,179 +5,187 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              x:Class="HireMe.View.MyProfilePage"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
+    
     <ContentPage.Content>
         <StackLayout
             BindingContext="{Binding MyProfile}"
             Margin="15,20,15,0">
-            <StackLayout
-                Orientation="Horizontal"
-                Margin="0">
-                <Image
-                    Source="ic_account"
-                    HorizontalOptions="CenterAndExpand"/>
-                
-                <Button
-                    Text="Editar Perfil"
-                    BackgroundColor="{DynamicResource SecondaryColor}"
-                    TextColor="{DynamicResource PrimaryTextColor}"
-                    CornerRadius="8"
-                    HorizontalOptions="End"
-                    Command="{Binding EditCommand}"/>
+        <StackLayout
+            Orientation="Horizontal"
+            Margin="0">
+
+            <StackLayout>
+                    <Image
+                        HeightRequest="80"
+                        WidthRequest="80"
+                        Source="ic_account"
+                        HorizontalOptions="CenterAndExpand"/>
+                    <Image x:Name="selectedImage"/>
             </StackLayout>
-            <ActivityIndicator
-                IsRunning="{Binding IsRunning, Mode=TwoWay}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center">
-            </ActivityIndicator>
-            <Grid RowSpacing="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
-                <Label
-                    Text="Nombre"
-                    TextColor="{DynamicResource PrimaryTextColor}"
-                    FontSize="Medium"
-                    FontAttributes="Bold"
-                    VerticalOptions="Center"
-                    HorizontalOptions="FillAndExpand"
-                    Grid.Row="0"
-                    Grid.Column="0"/>
-                <Entry
-                    Placeholder="Nombre"
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Text="{Binding Name,Mode=TwoWay}"
-                    BackgroundColor="{DynamicResource PrimaryColor}"
-                    TextColor="{DynamicResource PrimaryTextColor}"
-                    IsEnabled="{Binding IsEnabled}"/>
-
-                <Label
-                    Text="Apellido"
-                    TextColor="{DynamicResource PrimaryTextColor}"
-                    FontSize="Medium"
-                    FontAttributes="Bold"
-                    VerticalOptions="Center"
-                    HorizontalOptions="FillAndExpand"
-                    Grid.Row="1"
-                    Grid.Column="0"/>
-                <Entry
-                    Placeholder="Apellido"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Keyboard="Text"
-                    Text="{Binding LastName,Mode=TwoWay}"
-                    BackgroundColor="{DynamicResource PrimaryColor}"
-                    TextColor="{DynamicResource PrimaryTextColor}"
-                    IsEnabled="{Binding IsEnabled}"/>
-
-                <Label
-                    Text="Correo electronico"
-                    TextColor="{DynamicResource PrimaryTextColor}"
-                    FontSize="Medium"
-                    FontAttributes="Bold"
-                    VerticalOptions="Center"
-                    HorizontalOptions="FillAndExpand"
-                    Grid.Row="2"
-                    Grid.Column="0"/>
-                <Entry
-                    Placeholder="correo@mail.com"
-                    Keyboard="Email"
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Text="{Binding Mail,Mode=TwoWay}"
-                    BackgroundColor="{DynamicResource PrimaryColor}"
-                    TextColor="{DynamicResource PrimaryTextColor}"
-                    IsEnabled="{Binding IsEnabled}"/>
-
-                <Label
-                    Text="Contraseña"
-                    TextColor="{DynamicResource PrimaryTextColor}"
-                    FontSize="Medium"
-                    FontAttributes="Bold"
-                    VerticalOptions="Center"
-                    HorizontalOptions="FillAndExpand"
-                    Grid.Row="3"
-                    Grid.Column="0"/>
-                <Entry
-                    IsPassword="True"
-                    Placeholder="******"
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    Text="{Binding Password,Mode=TwoWay}"
-                    BackgroundColor="{DynamicResource PrimaryColor}"
-                    TextColor="{DynamicResource PrimaryTextColor}"
-                    IsEnabled="{Binding IsEnabled}"/>
-
-                <Label
-                    Text="Ubicacion"
-                    TextColor="{DynamicResource PrimaryTextColor}"
-                    FontSize="Medium"
-                    FontAttributes="Bold"
-                    VerticalOptions="Center"
-                    HorizontalOptions="FillAndExpand"
-                    Grid.Row="4"
-                    Grid.Column="0"/>
-                <Entry
-                    Placeholder="Panama"
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    Keyboard="Text"
-                    Text="{Binding Location,Mode=TwoWay}"
-                    BackgroundColor="{DynamicResource PrimaryColor}"
-                    TextColor="{DynamicResource PrimaryTextColor}"
-                    IsEnabled="{Binding IsEnabled}"/>
-
-                <Label
-                    Text="Celular"
-                    TextColor="{DynamicResource PrimaryTextColor}"
-                    FontSize="Medium"
-                    FontAttributes="Bold"
-                    VerticalOptions="Center"
-                    HorizontalOptions="FillAndExpand"
-                    Grid.Row="5"
-                    Grid.Column="0"/>
-                <Entry
-                    Placeholder="61200000"
-                    Keyboard="Telephone"
-                    Grid.Row="5"
-                    Grid.Column="1"
-                    Text="{Binding Phone,Mode=TwoWay}"
-                    BackgroundColor="{DynamicResource PrimaryColor}"
-                    TextColor="{DynamicResource PrimaryTextColor}"
-                    IsEnabled="{Binding IsEnabled}"/>
-
-                <Label
-                    Text="Profesion"
-                    TextColor="{DynamicResource PrimaryTextColor}"
-                    FontSize="Medium"
-                    FontAttributes="Bold"
-                    VerticalOptions="Center"
-                    HorizontalOptions="FillAndExpand"
-                    Grid.Row="6"
-                    Grid.Column="0"
-                    IsVisible="{Binding IsVisible}"/>
-                <Entry
-                    Placeholder="Jardinero, Ing. Electrico..."
-                    Keyboard="Text"
-                    Grid.Row="6"
-                    Grid.Column="1"
-                    Text="{Binding Profesion,Mode=TwoWay}"
-                    BackgroundColor="{DynamicResource PrimaryColor}"
-                    TextColor="{DynamicResource PrimaryTextColor}"
-                    IsEnabled="{Binding IsEnabled}"
-                    IsVisible="{Binding IsVisible}"/>
-                <Button
-                    Grid.Row="7"
-                    Grid.ColumnSpan="2"
-                    BackgroundColor="{DynamicResource PrimaryColor}"
-                    TextColor="{DynamicResource PrimaryTextColor}"
-                    FontSize="Medium"
-                    Text="Enviar"
-                    Command="{Binding SendBtn}"
-                    IsEnabled="{Binding IsEnabled}"/>
-            </Grid>
             
+                
+            <Button
+                Text="Editar Perfil"
+                BackgroundColor="{DynamicResource SecondaryColor}"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                CornerRadius="8"
+                HorizontalOptions="End"
+                Command="{Binding EditCommand}"/>
         </StackLayout>
+        <ActivityIndicator
+            IsRunning="{Binding IsRunning, Mode=TwoWay}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+        </ActivityIndicator>
+        <Grid RowSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label
+                Text="Nombre"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                FontSize="Medium"
+                FontAttributes="Bold"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                Grid.Row="0"
+                Grid.Column="0"/>
+            <Entry
+                Placeholder="Nombre"
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="{Binding Name,Mode=TwoWay}"
+                BackgroundColor="{DynamicResource PrimaryColor}"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                IsEnabled="{Binding IsEnabled}"/>
+
+            <Label
+                Text="Apellido"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                FontSize="Medium"
+                FontAttributes="Bold"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                Grid.Row="1"
+                Grid.Column="0"/>
+            <Entry
+                Placeholder="Apellido"
+                Grid.Row="1"
+                Grid.Column="1"
+                Keyboard="Text"
+                Text="{Binding LastName,Mode=TwoWay}"
+                BackgroundColor="{DynamicResource PrimaryColor}"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                IsEnabled="{Binding IsEnabled}"/>
+
+            <Label
+                Text="Correo electronico"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                FontSize="Medium"
+                FontAttributes="Bold"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                Grid.Row="2"
+                Grid.Column="0"/>
+            <Entry
+                Placeholder="correo@mail.com"
+                Keyboard="Email"
+                Grid.Row="2"
+                Grid.Column="1"
+                Text="{Binding Mail,Mode=TwoWay}"
+                BackgroundColor="{DynamicResource PrimaryColor}"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                IsEnabled="{Binding IsEnabled}"/>
+
+            <Label
+                Text="Contraseña"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                FontSize="Medium"
+                FontAttributes="Bold"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                Grid.Row="3"
+                Grid.Column="0"/>
+            <Entry
+                IsPassword="True"
+                Placeholder="******"
+                Grid.Row="3"
+                Grid.Column="1"
+                Text="{Binding Password,Mode=TwoWay}"
+                BackgroundColor="{DynamicResource PrimaryColor}"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                IsEnabled="{Binding IsEnabled}"/>
+
+            <Label
+                Text="Ubicacion"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                FontSize="Medium"
+                FontAttributes="Bold"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                Grid.Row="4"
+                Grid.Column="0"/>
+            <Entry
+                Placeholder="Panama"
+                Grid.Row="4"
+                Grid.Column="1"
+                Keyboard="Text"
+                Text="{Binding Location,Mode=TwoWay}"
+                BackgroundColor="{DynamicResource PrimaryColor}"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                IsEnabled="{Binding IsEnabled}"/>
+
+            <Label
+                Text="Celular"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                FontSize="Medium"
+                FontAttributes="Bold"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                Grid.Row="5"
+                Grid.Column="0"/>
+            <Entry
+                Placeholder="61200000"
+                Keyboard="Telephone"
+                Grid.Row="5"
+                Grid.Column="1"
+                Text="{Binding Phone,Mode=TwoWay}"
+                BackgroundColor="{DynamicResource PrimaryColor}"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                IsEnabled="{Binding IsEnabled}"/>
+
+            <Label
+                Text="Profesion"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                FontSize="Medium"
+                FontAttributes="Bold"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                Grid.Row="6"
+                Grid.Column="0"
+                IsVisible="{Binding IsVisible}"/>
+            <Entry
+                Placeholder="Jardinero, Ing. Electrico..."
+                Keyboard="Text"
+                Grid.Row="6"
+                Grid.Column="1"
+                Text="{Binding Profesion,Mode=TwoWay}"
+                BackgroundColor="{DynamicResource PrimaryColor}"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                IsEnabled="{Binding IsEnabled}"
+                IsVisible="{Binding IsVisible}"/>
+            <Button
+                Grid.Row="7"
+                Grid.ColumnSpan="2"
+                BackgroundColor="{DynamicResource PrimaryColor}"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                FontSize="Medium"
+                Text="Enviar"
+                Command="{Binding SendBtn}"
+                IsEnabled="{Binding IsEnabled}"/>
+        </Grid>
+            
+    </StackLayout>
     </ContentPage.Content>
 </ContentPage>
