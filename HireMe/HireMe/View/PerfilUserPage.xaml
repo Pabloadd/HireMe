@@ -6,40 +6,83 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Select"
-                     Clicked="Handle_Clicked"/>
+       <!-- <ToolbarItem Text="Select"
+                     Clicked="Handle_Clicked"/>-->
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
         <StackLayout BindingContext="{Binding Perfiluser}">
             <StackLayout
-                    Orientation="Horizontal"
+                Orientation="Vertical"
                 Margin="10,20,10,5">
-                <Image
-                    WidthRequest="80"
-                    HeightRequest="80"
-                    Source="ic_account"/>
                 <StackLayout
-                    Orientation="Horizontal"
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    HorizontalOptions="Center"
-                    VerticalOptions="CenterAndExpand">
+                    Orientation="Horizontal">
+                    <Image
+                        WidthRequest="80"
+                        HeightRequest="80"
+                        Source="ic_account"/>
+                    <StackLayout
+                        Orientation="Vertical">
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            VerticalOptions="CenterAndExpand">
+                            <Label
+                                Text="{Binding Perfiluser.Nombre_c}"
+                                TextColor="{DynamicResource PrimaryTextColor}"
+                                FontSize="Medium"
+                                Margin="0,0,5,0"/>
+                            <Label
+                                Text="{Binding Perfiluser.Apellido_user}"
+                                TextColor="{DynamicResource PrimaryTextColor}"
+                                FontSize="Medium"/>
+                        </StackLayout>
+                        <Label
+                            Text="Electricista"
+                            TextColor="{DynamicResource SecondaryTextColor}"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout
+                    Orientation="Horizontal">
+                    <Image Source="ic_phone" />
                     <Label
-                        Text="{Binding Perfiluser.Nombre_c}"
+                        Text="{Binding Perfiluser.Celular}" 
                         TextColor="{DynamicResource PrimaryTextColor}"
-                        FontSize="Medium"
-                        Margin="0,0,5,0"/>
+                        VerticalTextAlignment="Center"/>
+                </StackLayout>
+                <StackLayout
+                    Orientation="Horizontal">
+                    <Image Source="ic_email" />
                     <Label
-                        Text="{Binding Perfiluser.Apellido_user}"
+                        Text="{Binding Perfiluser.Mail_user}" 
                         TextColor="{DynamicResource PrimaryTextColor}"
-                        FontSize="Medium"/>
+                        VerticalTextAlignment="Center"/>
+                </StackLayout>
+                <StackLayout
+                    Orientation="Horizontal">
+                    <Image Source="ic_location" />
+                    <Label
+                        Text="{Binding Perfiluser.Ubicacion}" 
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        VerticalTextAlignment="Center"/>
+                </StackLayout>
+                <StackLayout
+                    Orientation="Horizontal">
+                    <Image Source="ic_school" />
+                    <Label
+                        Text="{Binding Perfiluser.profesion}" 
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        VerticalTextAlignment="Center"/>
                 </StackLayout>
             </StackLayout>
+            
+<!--
             <Grid
                 Margin="10,10,10,0">
                 <Grid.ColumnDefinitions>
-                    
+
                     <ColumnDefinition
                         Width="*"/>
                     <ColumnDefinition Width="2*"/>
@@ -60,7 +103,7 @@
                     TextColor="{DynamicResource PrimaryTextColor}"
                     FontSize="Medium"
                     HorizontalOptions="Center"/>
-                
+
                 <Label
                     Text="Celular"
                     TextColor="{DynamicResource PrimaryTextColor}"
@@ -76,7 +119,7 @@
                     TextColor="{DynamicResource PrimaryTextColor}"
                     FontSize="Medium"
                     HorizontalOptions="Center"/>
-                
+
                 <Label
                     Text="Residencia"
                     TextColor="{DynamicResource PrimaryTextColor}"
@@ -108,9 +151,8 @@
                     Text="{Binding Perfiluser.profesion}" 
                     TextColor="{DynamicResource PrimaryTextColor}"
                     FontSize="Medium"
-                    HorizontalOptions="Center"/> 
-            </Grid>
-
+                    HorizontalOptions="Center"/>
+            </Grid>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

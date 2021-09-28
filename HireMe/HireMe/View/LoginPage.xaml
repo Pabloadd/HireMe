@@ -33,7 +33,7 @@
                     <Frame
                         Grid.Row="0"
                         Grid.Column="1"
-                        BackgroundColor="{DynamicResource PrimaryColor}"
+                        
                         Padding="4"
                         CornerRadius="8">
                         <Entry
@@ -55,7 +55,7 @@
                     <Frame
                         Grid.Row="1"
                         Grid.Column="1"
-                        BackgroundColor="{DynamicResource PrimaryColor}"
+                        
                         Padding="4"
                         CornerRadius="8">
                         <Entry 
@@ -63,7 +63,7 @@
                             IsPassword="True"
                             Text="{Binding Password, Mode=TwoWay}"
                             TextColor="{DynamicResource PrimaryTextColor}"
-                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            
                             Placeholder="*******" />
                     </Frame>
                     

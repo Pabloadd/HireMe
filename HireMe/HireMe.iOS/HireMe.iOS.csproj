@@ -157,4 +157,16 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_account_whitemode.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_email.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_location.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_school.png" />
+  </ItemGroup>
 </Project>
