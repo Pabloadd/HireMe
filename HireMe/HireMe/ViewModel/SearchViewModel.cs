@@ -7,6 +7,8 @@ namespace HireMe.ViewModel
     using System.Windows.Input;
     using Xamarin.Forms;
     using View;
+    using Xamarin.Essentials;
+    using System;
 
     public class SearchViewModel : BaseViewModel
     {
@@ -100,7 +102,8 @@ namespace HireMe.ViewModel
         {
             MainViewModel.GetInstance().SearchPostvm = new SearchPostViewModel(this.login_user);
             await App.Navigator.PushAsync(new SearchPostPage());
-            
+            // after navegat to post view model
+            getUserLocation();
         }
         public async void SearchProf()
         {
@@ -133,6 +136,45 @@ namespace HireMe.ViewModel
         public void ConsultUser(string login_user_mail)
         {
             this.login_user = App.Database.getUserHm(login_user_mail).Result;
+        }
+
+        public async void getUserLocation()
+        {
+            try
+            {
+                var location = await Geolocation.GetLastKnownLocationAsync();
+
+                if (location != null)
+                {
+                    Console.WriteLine($"Location user, Latitud: {location.Latitude}, longitud: {location.Longitude} ");
+                }
+                else
+                {
+                    location = await Geolocation.GetLocationAsync(new GeolocationRequest()
+                    {
+                        DesiredAccuracy = GeolocationAccuracy.Medium,
+                        Timeout = TimeSpan.FromSeconds(30)
+                    });
+                    if (location != null)
+                    {
+                        Console.WriteLine($"L0cation user, Latitud: {location.Latitude}, longitud: {location.Longitude} ");
+                    }
+                }
+            }catch (FeatureNotSupportedException fnsEx)
+            {
+                Console.WriteLine($"Not supported device, extra: {fnsEx.Message}");
+            }
+            catch (FeatureNotEnabledException fneEx)
+            {
+                Console.WriteLine($"gps not enabled, {fneEx.Message}");
+            }catch (PermissionException pEx)
+            {
+                Console.WriteLine($"Permission denied {pEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Something went wrong: {ex.Message}");
+            }
         }
         #endregion
     }
